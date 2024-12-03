@@ -14,7 +14,7 @@ class HomeController extends Controller
     */
     // When we have only 1 method we can use __invoke
     public function __invoke() {
-        $title = "AisleManager FloorPlan";
+        $title = "AisleManager - FloorPlan";
         return view('home', compact('title'));
         //return "The homepage should show the grocery store FloorPlan... The menu will have a button [ FLOOR PLAN ] to return home";
     }

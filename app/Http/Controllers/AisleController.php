@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 class AisleController extends Controller
 {
     public function index() {
-        return "Aquí retornaremos una vista de Aisles aún por crear";
+        $aisles = Aisle::all();
+        return "Aquí retornaremos una vista floorplan de Aisles"; // Debe ser la instrucción a continuación
         //return view('aisles.index');
     }
     public function create() {

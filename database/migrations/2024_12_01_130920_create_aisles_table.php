@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->tinyInteger('number_sections');
             //$table->json('sections')->nullable();
-            $table->string('php_layout')->nullable();
+            //$table->string('php_layout')->nullable();
             $table->timestamps();
         });
     }

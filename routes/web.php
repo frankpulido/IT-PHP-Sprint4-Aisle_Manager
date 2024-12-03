@@ -56,6 +56,10 @@ Route::get('/aisles/{id}/{category?}', function ($id, $category = null) { // Thi
 
 Route::get('/section/{id}', [SectionController::class, 'show']);
 
+Route::get('/section/create', [SectionController::class, 'create']);
+
+
+
 /*
 Route::get('/test_crud', function(){
     // Create AISLE

@@ -15,8 +15,8 @@ class Section extends Model
         'aisle_order',
         'kind', // An enum identifying the kind od products displayed in each section (same enum column for products, must match)
         'number_products',
-        'products',
-        'php_layout',
+        //'products',
+        //'php_layout',
     ];
 
     public function aisle() // Define relationship with Aisle (each section belongs to one aisle)

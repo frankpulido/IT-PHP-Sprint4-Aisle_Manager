@@ -6,6 +6,6 @@
 
 <body>
     <?php //include('../components/header.php'); ?>
-    <h1>This page displays a FORM to CREATE an Aisle</h1>
+    <h1>[ NOT AVAILABLE ] This page should display a FORM to CREATE an Aisle when the grocery store is being planned.</h1>
 </body>
 </html>

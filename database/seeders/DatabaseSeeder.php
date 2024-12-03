@@ -19,8 +19,8 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             ProductSeeder::class, // Order is important (products go inside sections that go inside aisles) / Inverse order than migrations
+            AisleSeeder::class,
             SectionSeeder::class,
-            AisleSeeder::class
         ]);
         /* User::factory(10)->create();
         User::factory()->create([
