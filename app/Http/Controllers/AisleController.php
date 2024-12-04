@@ -8,9 +8,11 @@ class AisleController extends Controller
 {
     public function index() {
         $aisles = Aisle::all();
-        return "Aquí retornaremos una vista floorplan de Aisles"; // Debe ser la instrucción a continuación
-        //return view('aisles.index');
+        return $aisles;
+        //return "Aisles floorplan"; // Check notes in iphone
+        //return view('aisles.index', [$aisles]);
     }
+    
     public function create() {
         return view('aisles.create');
         /* Ver minuto 06:00 Episodio Lista Coders Free "09 - Eloquent - Curso Laravel 11 desde cero"

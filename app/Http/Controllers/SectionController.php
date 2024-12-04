@@ -26,6 +26,7 @@ class SectionController extends Controller
     public function show($id) {
         //return "This page will show details of section $id";
         //return view('sections.show', ['id' => $id]); // returns sections/show.blade.php passing variable "id"
+        $section = Section::find($id); // OJO, ABAJO HAY QUE PASAR TB LA $SECTION
         return view('sections.show', compact('id')); // returns sections/show.blade.php passing variable "id"
     }
 
