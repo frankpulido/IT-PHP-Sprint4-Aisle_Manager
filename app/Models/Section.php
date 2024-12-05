@@ -24,8 +24,10 @@ class Section extends Model
         return $this->belongsTo(Aisle::class);
     }
 
-    // CHECK IF THIS IS NECESSARY
-    protected $casts = [ // Cast the 'products' column to an array
-        'products' => 'array',
-    ];
+    // Relationship with Products
+    public function products()
+    {
+        return $this->hasMany(Product::class)->orderBy('section_order');
+    }
+
 }

@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->tinyInteger('number_sections');
-            //$table->json('sections')->nullable();
-            //$table->string('php_layout')->nullable();
+            //$table->json('sections')->nullable(); // Sections should be relocated with total freedom 
+            //$table->string('php_layout')->nullable(); // No layout, sections take order_aisle (from 1 to 8)
             $table->timestamps();
         });
     }

@@ -23,21 +23,4 @@ class Aisle extends Model
         return $this->hasMany(Section::class)->orderBy('aisle_order');
     }
 
-    /* THIS FUNCTION IS USED TO CAST ALL DESIRED ATTRIBUTES FOR SPECIFIC FORMATTING
-    protected function cast() : array {
-        return [
-            'sections' => 'array', // Cast the 'sections' column to an array REPLACED by foreign key in table sections
-        ];
-    }
-    */
-
-    /* I guess this is really made in factory
-    protected function name():Attribute {
-        return Attribute::make(
-            set:function($table->id()){
-                return 'Aisle ' . $table->id();
-            }
-        );
-    }
-    */
 }

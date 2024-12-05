@@ -13,7 +13,15 @@ Route::get('/', HomeController::class);
 // ONLY BECAUSE HOMECONTROLLER HAS A SINGLE METHOD : I changes method index() to method __invoke() in app/Http/Controllers
 // I will make an introduction to the project purpose
 
-Route::get('/aisles', [AisleController::class, 'index']); // Grocery Store Aisles floorplan
+Route::get('/aisles', [AisleController::class, 'index']); // Renders the Grocery Store Floorplan (8 aisles)
+
+Route::get('/aisles/{id}/', [AisleController::class, 'show']); // Renders the 8 aisle sections of a given aisle
+
+Route::post('/aisles', [AisleController::class, 'swap'])->name('aisles.swap'); // Swap entire aisles or single sections
+
+
+
+
 
 Route::get('/aisles/create', [AisleController::class, 'create']); // Not in use (for future development)
 

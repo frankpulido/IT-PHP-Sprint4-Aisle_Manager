@@ -80,7 +80,7 @@ header{
 }
 .header-container {
     display: grid;
-    grid-template-columns: 1fr 2.5fr 2fr;
+    grid-template-columns: 1fr;
     align-items: center; /*I added this and made the changes commenting header above*/
     gap: 10px;
     padding: 0px;
@@ -144,6 +144,18 @@ header{
     gap: 10px;  /* El PADDING no es necesario porque tenemos el GAP del GRID superior (grid-container) */
 }
 
+.nested-grid-2 {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;  /* El PADDING no es necesario porque tenemos el GAP del GRID superior (grid-container) */
+}
+
+.nested-grid-8 {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    gap: 10px;  /* El PADDING no es necesario porque tenemos el GAP del GRID superior (grid-container) */
+}
+
 .grid-container-cases-4 {
     background-color: lightgray;
     display: grid;
@@ -174,3 +186,86 @@ header{
     padding: 10px;
     box-sizing: border-box;
 }
+
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+
+.aisle-link {
+    color: black;
+    background-color: rgba(246, 214, 97,0.5); /* same yellow than header */
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300;
+    display:flex;
+    flex-direction: block;
+    justify-content: center;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: none;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.aisle-link:hover {
+    background-color: rgba(84, 63, 129, 0.3);
+    text-decoration: none;
+}
+
+.section-button {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: none;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.section-button.assigned {
+    background-color: #d4edda; /* Green */
+}
+
+.section-button.unassigned {
+    background-color: #f8d7da; /* Red */
+}
+
+.product-button {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300;
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 100%;
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: none;
+    outline: none;
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.product-button.assigned {
+    background-color: #d4edda; /* Green */
+}
+
+.product-button.unassigned {
+    background-color: #f8d7da; /* Red */
+}
+

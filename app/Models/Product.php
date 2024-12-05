@@ -14,4 +14,10 @@ class Product extends Model
         'kind', // An enum identifying the kind od products displayed in each section (same enum column for sections, must match)
         'price',
     ];
+
+    // Relationship to Section
+    public function section()
+    {
+        return $this->belongsTo(Section::class);
+    }
 }
