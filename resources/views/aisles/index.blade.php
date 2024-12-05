@@ -16,7 +16,7 @@
             <!-- SWAP AISLES -->
             <article class="grid-item">
 
-                <form method="POST" action="{{ url('aisles') }}">
+                <form method="POST" action="{{ route('aisles.swap') }}">
                     @csrf
                     <label for="aisle1">Select Aisle 1:</label>
                     <select name="aisle1" id="aisle1" class="swap-dropdown">
@@ -42,7 +42,7 @@
             <!-- SWAP SECTIONS -->
             <article class="grid-item">
 
-            <form method="POST" action="{{ url('aisles') }}">
+            <form method="POST" action="{{ route('sections.swap') }}">
                 @csrf
                 <label for="section1">Select Section 1:</label>
                 <select name="section1" id="section1" class="swap-dropdown">
@@ -75,7 +75,7 @@
 
         </section>
     </section>
-    
+
 
     <section class="grid-container">
         <section class="nested-grid-8 rajdhani-light">

@@ -17,7 +17,12 @@ Route::get('/aisles', [AisleController::class, 'index']); // Renders the Grocery
 
 Route::get('/aisles/{id}/', [AisleController::class, 'show']); // Renders the 8 aisle sections of a given aisle
 
-Route::post('/aisles', [AisleController::class, 'swap'])->name('aisles.swap'); // Swap entire aisles or single sections
+// POST route for swapping aisles
+Route::post('/swap-aisles', [AisleController::class, 'swapAisles'])->name('aisles.swap');
+
+// POST route for swapping sections
+Route::post('/swap-sections', [AisleController::class, 'swapSections'])->name('sections.swap');
+
 
 
 
