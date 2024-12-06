@@ -1,9 +1,13 @@
 <header class="rajdhani-regular">
 <section class="header-container">
     <section class="rajdhani-light">
+    <nav class="menu">
+            <a href="#" class="menu-option">[ README ]</a>
+            <a href="{{ route('aisles.index') }}" class="menu-option">[ STORE FLOORPLAN ]</a>
+            <a href="#" class="menu-option">[ SOURCES RESEARCHED ]</a>
+        </nav>
         <nav class="menu">
-            <a href="#" class="menu-option">[ NEW AISLE ]</a>
-            <a href="#" class="menu-option">[ NEW SECTION ]</a>
+            <a href="{{ route('sections.orphaned') }}" class="menu-option">[ NEW SECTION | ORPHANED SECTIONS ]</a>
             <a href="#" class="menu-option">[ NEW PRODUCT ]</a>
         </nav>
         <nav class="menu">

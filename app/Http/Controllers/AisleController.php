@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Aisle;
+use App\Models\Section;
 use Illuminate\Http\Request;
 
 class AisleController extends Controller
@@ -42,127 +43,122 @@ class AisleController extends Controller
         return view('aisles.show', compact('aisle'));
     }
 
+
     public function swapAisles(Request $request)
     {
         // Retrieve aisle IDs from the form
         $aisle1Id = $request->input('aisle1');
         $aisle2Id = $request->input('aisle2');
 
-        // Call the private method to handle the swap
-        $this->executeAislesSwap($aisle1Id, $aisle2Id);
-
-        // Fetch all aisles to update the view
-        $aisles = Aisle::with('sections')->get();
-        return view('aisles.index', ['aisles' => $aisles]);
-    }
-
-
-    private function executeAislesSwap($aisle1Id, $aisle2Id)
-    {
-        // Fetch aisles by their IDs, and get the sections for each aisle
+        // Fetch aisles and their respective sections
         $aisle1 = Aisle::findOrFail($aisle1Id);
         $aisle2 = Aisle::findOrFail($aisle2Id);
-    
-        // Loop through each section of aisle 1
-        foreach ($aisle1->sections as $section1) {
-            // Try to find the corresponding section in aisle 2 with the same aisle_order
-            $section2 = $aisle2->sections->firstWhere('aisle_order', $section1->aisle_order);
-    
-            if ($section2) {
-                // Both sections exist, swap their aisle_ids
-                $section1->aisle_id = $aisle2->id;
-                $section2->aisle_id = $aisle1->id;
-    
-                // Save both sections after swapping
-                $section1->save();
-                $section2->save();
-            } else {
-                // Only section 1 exists, move it to aisle 2
-                $section1->aisle_id = $aisle2->id;
-                $section1->save();
-            }
+
+        // Ensure both aisles have the same number of sections
+        $maxSections = max($aisle1->number_sections, $aisle2->number_sections);
+
+        // Iterate through all possible positions in the aisles
+        for ($aisleOrder = 1; $aisleOrder <= $maxSections; $aisleOrder++) {
+            // Formulate the data for `swapSections`
+            $section1Key = "{$aisle1Id},{$aisleOrder}";
+            $section2Key = "{$aisle2Id},{$aisleOrder}";
+
+            // Simulate a request for swapping the sections
+            $this->swapSections(new Request([
+                'section1' => $section1Key,
+                'section2' => $section2Key,
+            ]));
         }
-    
-        // Now handle the reverse: any section in aisle 2 that doesn't exist in aisle 1
-        foreach ($aisle2->sections as $section2) {
-            // Check if this section exists in aisle 1
-            $section1 = $aisle1->sections->firstWhere('aisle_order', $section2->aisle_order);
-    
-            if (!$section1) {
-                // Only section 2 exists, move it to aisle 1
-                $section2->aisle_id = $aisle1->id;
-                $section2->save();
-            }
-        }
+
+        // Redirect back to the aisles index page
+        return redirect()->route('aisles.index');
     }
 
 
     public function swapSections(Request $request)
     {
-        // Get the aisle and section info from the form
-        [$aisle1Id, $section1Order] = explode(',', $request->input('section1'));
-        [$aisle2Id, $section2Order] = explode(',', $request->input('section2'));
+        // Get the sections from the request
+        list($aisle1Id, $section1Order) = explode(',', $request->input('section1'));
+        list($aisle2Id, $section2Order) = explode(',', $request->input('section2'));
 
-        // Fetch the aisles
-        $aisle1 = Aisle::findOrFail($aisle1Id);
-        $aisle2 = Aisle::findOrFail($aisle2Id);
+        // Retrieve the sections from the database
+        $section1 = Section::where('aisle_id', $aisle1Id)
+            ->where('aisle_order', $section1Order)
+            ->first();
 
-        // Fetch the sections to swap based on their aisle_order
-        $section1 = $aisle1->sections->firstWhere('aisle_order', $section1Order);
-        $section2 = $aisle2->sections->firstWhere('aisle_order', $section2Order);
+        $section2 = Section::where('aisle_id', $aisle2Id)
+            ->where('aisle_order', $section2Order)
+            ->first();
 
+        // Case 1 : Both sections exist
         if ($section1 && $section2) {
-            // Step 1: Set section 2's aisle_id and aisle_order to null (to avoid constraint violations)
+            // Step 1: Set section 2's aisle_id and aisle_order to null
             $section2->aisle_id = null;
             $section2->aisle_order = null;
             $section2->save();
-    
-            // Step 2: Swap section 1's values with section 2
-            $section1->aisle_id = $aisle2->id;
+
+            // Step 2: Set section 1's aisle_id and aisle_order to section 2's original values
+            $section1->aisle_id = $aisle2Id;
             $section1->aisle_order = $section2Order;
             $section1->save();
-    
-            // Step 3: Restore section 2's values
-            $section2->aisle_id = $aisle1->id;
+
+            // Step 3: Set section 2's aisle_id and aisle_order to section 1's original values
+            $section2->aisle_id = $aisle1Id;
             $section2->aisle_order = $section1Order;
             $section2->save();
+
+            // Fetch updated aisles to display updated content
+            //$aisles = Aisle::with('sections')->get();
+
+            // Redirect back to the aisles index page with updated data
+            return redirect()->route('aisles.index');
         }
 
-        // Fetch all aisles to update the view
-        $aisles = Aisle::with('sections')->get();
-        return view('aisles.index', ['aisles' => $aisles]);
-        
+        // Case 2 : Neither sections exist : Do nothing
+        if (!$section1 && !$section2) {
+            return redirect()->route('aisles.index');
+        }
 
-        // Redirect back to the aisles page to refresh
-        //return redirect()->route('aisles.index');
+        // Case 3: Section 1 does not exist
+        if (!$section1) {
+            $section2->aisle_id = $aisle1Id;
+            $section2->aisle_order = $section1Order;
+            $section2->save();
+
+            return redirect()->route('aisles.index');
+        }
+
+        // Case 4: Section 2 does not exist
+        if (!$section2) {
+            $section1->aisle_id = $aisle2Id;
+            $section1->aisle_order = $section2Order;
+            $section1->save();
+
+            return redirect()->route('aisles.index');
+        }
+
+        // Just in case, but this is impossible
+        return redirect()->route('aisles.index')->with('error', 'Sections not found.');
     }
 
-    /*
-    public function swapSections(Request $request)
+    public function orphanedSections()
     {
-        // Validate the inputs (aisle1, aisle2, section1, section2)
-        $request->validate([
-            'section1' => 'required|string',
-            'section2' => 'required|string',
-        ]);
+        // Retrieve sections where aisle_id and aisle_order are null
+        $sections = Section::whereNull('aisle_id')->whereNull('aisle_order')
+            ->with('products') // Load related products
+            ->get();
 
-        // Extract aisle_id and aisle_order from the selected values
-        [$aisle1Id, $aisle1Order] = explode(',', $request->section1);
-        [$aisle2Id, $aisle2Order] = explode(',', $request->section2);
-
-        // Perform the section swap
-        $this->swapAisles($aisle1Id, $aisle2Id);
-
-        // Fetch the aisles and sections after swapping
-        $aisles = Aisle::with('sections')->get();
-
-        // Redirect back to the same page with the updated aisles
-        return view('aisles.index', compact('aisles'));
+        return view('aisles.orphaned', compact('sections'));
     }
-    */
 
 
 
+
+
+
+
+
+    // Code below is not in use
 
     
     

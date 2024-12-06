@@ -1,58 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<?php $title = "Aisle Manager | Floor Plan"; ?>
+<?php $title = "Aisle Manager | $aisle->name"; ?>
 @include('components.head')
 
 <body>
     @include('components.header')
+
     <div>
         <h1 class="rajdhani-light">Sections of {{ $aisle->name }}</h1>
         <section class="rajdhani-light">
-
         </section>
     </div>
 
-    <?php // dd($aisle->toArray()); ?>
-
     <section class="grid-container">
         <section class="nested-grid-8 rajdhani-light">
+            @php
+                $totalSections = $aisle->number_sections;
+                $sections = $aisle->sections->keyBy('aisle_order'); // Organize sections by aisle_order for quick lookup
+            @endphp
 
-            @foreach ($aisle->sections as $section)
+            @for ($i = 1; $i <= $totalSections; $i++)
                 <article class="grid-item">
                     <!-- Section Link -->
-                    <a href="{{ url('sections/' . $section->id) }}" class="aisle-link">
-                        Position {{ $section->aisle_order }} | Section ID: {{ $section->id }}<br>Kind: {{ $section->kind }}
-                    </a>
+                    @if ($sections->has($i))
+                        @php $section = $sections[$i]; @endphp
+                        <a href="{{ url('sections/' . $section->id) }}" class="aisle-link">
+                            Position: {{ $i }} | Section ID: {{ $section->id }}<br>
+                            Kind: {{ $section->kind }}
+                        </a>
 
-                    <!-- Products in the Section -->
-                    <div class="products">
-                        @php
-                            $totalPositions = $section->number_products;
-                            $products = $section->products->keyBy('section_order'); // Organize by section_order for quick lookup
-                        @endphp
+                        <!-- Products in the Section -->
+                        <div class="products">
+                            @php
+                                $totalProducts = $section->number_products;
+                                $products = $section->products->keyBy('section_order'); // Organize products by section_order
+                            @endphp
 
-                        @for ($position = 1; $position <= $totalPositions; $position++)
-                            @if ($products->has($position))
-                                @php $product = $products[$position]; @endphp
-                                <!-- Assigned Product Button -->
-                                <button class="product-button assigned" data-product-id="{{ $product->id }}">
-                                    Product Name: {{ $product->name }}<br>
-                                    Kind: {{ $product->kind }}<br>
-                                    Price: ${{ number_format($product->price, 2) }}
-                                </button>
-                            @else
-                                <!-- Unassigned Product Button -->
-                                <button class="product-button unassigned" data-position="{{ $position }}">
-                                    Position: {{ $position }}<br>
-                                    Unassigned
-                                </button>
-                            @endif
-                        @endfor
-                    </div>
+                            @for ($j = 1; $j <= $totalProducts; $j++)
+                                @if ($products->has($j))
+                                    @php $product = $products[$j]; @endphp
+                                    <!-- Assigned Product Button -->
+                                    <button class="product-button assigned" data-product-id="{{ $product->id }}">
+                                        Product Name: {{ $product->name }}<br>
+                                        Kind: {{ $product->kind }}<br>
+                                        Price: ${{ number_format($product->price, 2) }}
+                                    </button>
+                                @else
+                                    <!-- Unassigned Product Button -->
+                                    <button class="product-button unassigned" data-position="{{ $j }}">
+                                        Position: {{ $j }}<br>
+                                        Unassigned
+                                    </button>
+                                @endif
+                            @endfor
+                        </div>
+                    @else
+                        <a href="#" class="aisle-link">
+                            Position: {{ $i }} | Unassigned<br>
+                            No Section
+                        </a>
+                    @endif
                 </article>
-            @endforeach
-
+            @endfor
         </section>
     </section>
 
@@ -76,7 +86,6 @@
             });
         });
     </script>
-
 
 </body>
 </html>
