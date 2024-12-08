@@ -126,7 +126,7 @@
                     const position = this.dataset.position;
 
                     if (sectionId) {
-                        alert(`Section ${sectionId} clicked!`);
+                        alert(`Section ${sectionId} clicked!`)
                         // Open assigned section menu (e.g., view, reassign, delete)
                     } else if (position) {
                         alert(`Unassigned position ${position} clicked!`);

@@ -20,7 +20,7 @@
                     <a href="{{ url('sections/' . $section->id) }}" class="aisle-link">
                         Section ID: {{ $section->id }}<br>
                         Kind: {{ $section->kind }}<br>
-                        Capacity: {{ $section->number_products }} Products
+                        SET FOR {{ $section->number_products }} Products
                     </a>
 
                     <!-- Products in the Section -->

@@ -23,7 +23,11 @@ return new class extends Migration
             // Important : database/factories/SectionFactory.php must consider same enums  
             $table->tinyInteger('number_products');
             //$table->json('products')->nullable(); // product id's displayed in section. Array size no greater than number_products
-            $table->string('php_layout')->nullable(); // this will be the grid layout
+            $table->foreignId('grid_id')  // this will be the assigned grid layout
+                ->nullable() // Allow sections to exist without being assigned a layout
+                ->constrained('grid_layouts') // References 'id' column in `grid_layouts` table
+                ->onUpdate('cascade')    // Prevent updates if referenced ID changes
+                ->onDelete('restrict');   // Prevent deletion of grid layouts with related sections
             $table->timestamps();
 
             // Add composite unique constraint

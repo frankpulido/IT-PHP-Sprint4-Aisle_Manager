@@ -13,6 +13,9 @@ class Product extends Model
         'name',
         'kind', // An enum identifying the kind od products displayed in each section (same enum column for sections, must match)
         'price',
+        'revenues_year',
+        'turnover_year',
+        'stockouts_year',
     ];
 
     // Relationship to Section

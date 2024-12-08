@@ -30,4 +30,9 @@ class Section extends Model
         return $this->hasMany(Product::class)->orderBy('section_order');
     }
 
+    public function gridLayout()
+    {
+        return $this->belongsTo(GridLayout::class, 'grid_id');
+    }
+
 }

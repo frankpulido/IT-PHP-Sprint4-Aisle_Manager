@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Aisle;
 use App\Models\Section;
 use App\Models\Product;
+use App\Models\GridLayout;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -20,6 +21,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             ProductSeeder::class, // Order is important (products go inside sections that go inside aisles) / Inverse order than migrations
             AisleSeeder::class,
+            GridLayoutSeeder::class,
             SectionSeeder::class,
         ]);
         /* User::factory(10)->create();

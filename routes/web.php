@@ -9,7 +9,7 @@ use App\Models\Aisle;
 use App\Models\Section;
 use App\Models\Product;
 
-Route::get('/', HomeController::class);
+Route::get('/', HomeController::class)->name('home');
 // ONLY BECAUSE HOMECONTROLLER HAS A SINGLE METHOD : I changes method index() to method __invoke() in app/Http/Controllers
 // I will make an introduction to the project purpose
 
@@ -23,9 +23,10 @@ Route::post('/swap-aisles', [AisleController::class, 'swapAisles'])->name('aisle
 // POST route for swapping sections
 Route::post('/swap-sections', [AisleController::class, 'swapSections'])->name('sections.swap');
 
-
 Route::get('/sections/orphaned', [AisleController::class, 'orphanedSections'])->name('sections.orphaned'); // Renders Orphaned Sections to Allocate
 
+// Defines the route to fetch product details
+//Route::get('/aisles/{aisleId}/products/{productId}', [ProductController::class, 'show']);
 
 
 

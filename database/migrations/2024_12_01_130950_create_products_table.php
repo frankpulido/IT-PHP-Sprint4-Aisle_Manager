@@ -23,6 +23,9 @@ return new class extends Migration
             $table->enum('kind', ['food', 'fresh food', 'personal care', 'cleaning', 'dairy', 'beer', 'water', 'beverages'])->default('food');
             // Important : database/factories/SectionFactory.php must consider same enums  
             $table->decimal('price',5,2); // total = 5 digits, 2 are decimal
+            $table->decimal('revenues_year',8,2)->nullable();
+            $table->decimal('turnover_year',4,2)->nullable();
+            $table->tinyInteger('stockouts_year')->nullable();
             $table->timestamps();
 
             // Add composite unique constraint
