@@ -11,9 +11,10 @@ class GridLayout extends Model
     use HasFactory;
     protected $table = 'grid_layouts'; // This was added by me (not really necessary because I used class plural)
     protected $fillable = [ // These are the only attributes that can be mass-assigned by faker
-        'gridlayoutcss'
+        'number_products'
     ];
 
+    // Relationship with Section
     public function sections()
     {
         return $this->hasMany(Section::class, 'grid_id');

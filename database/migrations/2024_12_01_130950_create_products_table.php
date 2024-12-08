@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->id();
             $table->foreignId('section_id')
-                ->nullable() // Allow sections to exist without being assigned to an aisle initially
+                ->nullable() // Allow products to exist without being assigned to a section initially
                 ->constrained('sections') // References 'id' column in `sections` table
                 ->onUpdate('cascade')    // Prevent updates if referenced ID changes
                 ->onDelete('restrict');   // Prevent deletion of aisles with related sections

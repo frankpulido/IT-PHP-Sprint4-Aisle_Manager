@@ -22,7 +22,7 @@ return new class extends Migration
             $table->enum('kind', ['food', 'fresh food', 'personal care', 'cleaning', 'dairy', 'beer', 'water', 'beverages'])->default('food');
             // Important : database/factories/SectionFactory.php must consider same enums  
             $table->tinyInteger('number_products');
-            //$table->json('products')->nullable(); // product id's displayed in section. Array size no greater than number_products
+            // Important : consider modifying 'number_products' as enum matching column in table 'grid_layouts'
             $table->foreignId('grid_id')  // this will be the assigned grid layout
                 ->nullable() // Allow sections to exist without being assigned a layout
                 ->constrained('grid_layouts') // References 'id' column in `grid_layouts` table

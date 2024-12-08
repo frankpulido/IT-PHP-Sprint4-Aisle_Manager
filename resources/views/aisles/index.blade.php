@@ -105,7 +105,7 @@
                             @else
                                 <button class="section-button unassigned" data-position="{{ $position }}">
                                     Position: {{ $position }}<br>
-                                    Unassigned
+                                    Section Unassigned
                                 </button>
                             @endif
                         @endfor

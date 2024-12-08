@@ -27,9 +27,10 @@ class Section extends Model
     // Relationship with Products
     public function products()
     {
-        return $this->hasMany(Product::class)->orderBy('section_order');
+        return $this->hasMany(Product::class, 'section_id')->orderBy('section_order');
     }
 
+    // Relationship with GridLayouts
     public function gridLayout()
     {
         return $this->belongsTo(GridLayout::class, 'grid_id');

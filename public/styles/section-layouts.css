@@ -345,3 +345,331 @@
 .section-grid-8-flexible1 > :nth-child(8) {
     grid-area: product8;
 }
+
+
+
+.section-grid-9 {
+  display: grid;
+  gap: 5px; /* Optional gap between products */
+  grid-template-areas:
+    "product1 product1 product1 product1 product2 product2 product2 product2 product3 product3 product3 product3"
+    "product1 product1 product1 product1 product2 product2 product2 product2 product3 product3 product3 product3"
+    "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6"
+    "product7 product7 product7 product7 product8 product8 product8 product8 product9 product9 product9 product9"
+    "product7 product7 product7 product7 product8 product8 product8 product8 product9 product9 product9 product9";
+}
+
+.section-grid-9 > :nth-child(1) {
+  grid-area: product1;
+}
+
+.section-grid-9 > :nth-child(2) {
+  grid-area: product2;
+}
+
+.section-grid-9 > :nth-child(3) {
+  grid-area: product3;
+}
+
+.section-grid-9 > :nth-child(4) {
+  grid-area: product4;
+}
+
+.section-grid-9 > :nth-child(5) {
+  grid-area: product5;
+}
+
+.section-grid-9 > :nth-child(6) {
+  grid-area: product6;
+}
+
+.section-grid-9 > :nth-child(7) {
+  grid-area: product7;
+}
+
+.section-grid-9 > :nth-child(8) {
+  grid-area: product8;
+}
+
+.section-grid-9 > :nth-child(9) {
+  grid-area: product9;
+}
+
+
+
+.section-grid-10 {
+  display: grid;
+  gap: 5px; /* Optional gap between products */
+  grid-template-areas:
+    "product1 product1 product1 product1 product1 product1 product2 product2 product2 product2 product2 product2"
+    "product3 product3 product3 product3 product3 product3 product4 product4 product4 product4 product4 product4"
+    "product5 product5 product5 product5 product5 product5 product6 product6 product6 product6 product6 product6"
+    "product7 product7 product7 product7 product7 product7 product8 product8 product8 product8 product8 product8"
+    "product9 product9 product9 product9 product9 product9 product10 product10 product10 product10 product10 product10";
+}
+
+.section-grid-10 > :nth-child(1) {
+  grid-area: product1;
+}
+
+.section-grid-10 > :nth-child(2) {
+  grid-area: product2;
+}
+
+.section-grid-10 > :nth-child(3) {
+  grid-area: product3;
+}
+
+.section-grid-10 > :nth-child(4) {
+  grid-area: product4;
+}
+
+.section-grid-10 > :nth-child(5) {
+  grid-area: product5;
+}
+
+.section-grid-10 > :nth-child(6) {
+  grid-area: product6;
+}
+
+.section-grid-10 > :nth-child(7) {
+  grid-area: product7;
+}
+
+.section-grid-10 > :nth-child(8) {
+  grid-area: product8;
+}
+
+.section-grid-10 > :nth-child(9) {
+  grid-area: product9;
+}
+
+.section-grid-10 > :nth-child(10) {
+  grid-area: product10;
+}
+
+
+
+.section-grid-12 {
+  display: grid;
+  gap: 5px; /* Optional gap between products */
+  grid-template-areas:
+    "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12"
+    "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12"
+    "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12"
+    "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12"
+    "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12";
+}
+
+.section-grid-12 > :nth-child(1) {
+  grid-area: product1;
+}
+
+.section-grid-12 > :nth-child(2) {
+  grid-area: product2;
+}
+
+.section-grid-12 > :nth-child(3) {
+  grid-area: product3;
+}
+
+.section-grid-12 > :nth-child(4) {
+  grid-area: product4;
+}
+
+.section-grid-12 > :nth-child(5) {
+  grid-area: product5;
+}
+
+.section-grid-12 > :nth-child(6) {
+  grid-area: product6;
+}
+
+.section-grid-12 > :nth-child(7) {
+  grid-area: product7;
+}
+
+.section-grid-12 > :nth-child(8) {
+  grid-area: product8;
+}
+
+.section-grid-12 > :nth-child(9) {
+  grid-area: product9;
+}
+
+.section-grid-12 > :nth-child(10) {
+  grid-area: product10;
+}
+
+.section-grid-12 > :nth-child(11) {
+  grid-area: product11;
+}
+
+.section-grid-12 > :nth-child(12) {
+  grid-area: product12;
+}
+
+
+
+.section-grid-15 {
+  display: grid;
+  gap: 5px; /* Optional gap between products */
+  grid-template-areas:
+    "product1 product1 product1 product1 product2 product2 product2 product2 product3 product3 product3 product3"
+    "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6"
+    "product7 product7 product7 product7 product8 product8 product8 product8 product9 product9 product9 product9"
+    "product10 product10 product10 product10 product11 product11 product11 product11 product12 product12 product12 product12"
+    "product13 product13 product13 product13 product14 product14 product14 product14 product15 product15 product15 product15";
+}
+
+.section-grid-15 > :nth-child(1) {
+  grid-area: product1;
+}
+
+.section-grid-15 > :nth-child(2) {
+  grid-area: product2;
+}
+
+.section-grid-15 > :nth-child(3) {
+  grid-area: product3;
+}
+
+.section-grid-15 > :nth-child(4) {
+  grid-area: product4;
+}
+
+.section-grid-15 > :nth-child(5) {
+  grid-area: product5;
+}
+
+.section-grid-15 > :nth-child(6) {
+  grid-area: product6;
+}
+
+.section-grid-15 > :nth-child(7) {
+  grid-area: product7;
+}
+
+.section-grid-15 > :nth-child(8) {
+  grid-area: product8;
+}
+
+.section-grid-15 > :nth-child(9) {
+  grid-area: product9;
+}
+
+.section-grid-15 > :nth-child(10) {
+  grid-area: product10;
+}
+
+.section-grid-15 > :nth-child(11) {
+  grid-area: product11;
+}
+
+.section-grid-15 > :nth-child(12) {
+  grid-area: product12;
+}
+
+.section-grid-15 > :nth-child(13) {
+  grid-area: product13;
+}
+
+.section-grid-15 > :nth-child(14) {
+  grid-area: product14;
+}
+
+.section-grid-15 > :nth-child(15) {
+  grid-area: product15;
+}
+
+
+.section-grid-20 {
+  display: grid;
+  gap: 5px; /* Optional gap between products */
+  grid-template-areas:
+    "product1 product1 product1 product2 product2 product2 product3 product3 product3 product4 product4 product4"
+    "product5 product5 product5 product6 product6 product6 product7 product7 product7 product8 product8 product8"
+    "product9 product9 product9 product10 product10 product10 product11 product11 product11 product12 product12 product12"
+    "product13 product13 product13 product14 product14 product14 product15 product15 product15 product16 product16 product16"
+    "product17 product17 product17 product18 product18 product18 product19 product19 product19 product20 product20 product20";
+}
+
+.section-grid-20 > :nth-child(1) {
+  grid-area: product1;
+}
+
+.section-grid-20 > :nth-child(2) {
+  grid-area: product2;
+}
+
+.section-grid-20 > :nth-child(3) {
+  grid-area: product3;
+}
+
+.section-grid-20 > :nth-child(4) {
+  grid-area: product4;
+}
+
+.section-grid-20 > :nth-child(5) {
+  grid-area: product5;
+}
+
+.section-grid-20 > :nth-child(6) {
+  grid-area: product6;
+}
+
+.section-grid-20 > :nth-child(7) {
+  grid-area: product7;
+}
+
+.section-grid-20 > :nth-child(8) {
+  grid-area: product8;
+}
+
+.section-grid-20 > :nth-child(9) {
+  grid-area: product9;
+}
+
+.section-grid-20 > :nth-child(10) {
+  grid-area: product10;
+}
+
+.section-grid-20 > :nth-child(11) {
+  grid-area: product11;
+}
+
+.section-grid-20 > :nth-child(12) {
+  grid-area: product12;
+}
+
+.section-grid-20 > :nth-child(13) {
+  grid-area: product13;
+}
+
+.section-grid-20 > :nth-child(14) {
+  grid-area: product14;
+}
+
+.section-grid-20 > :nth-child(15) {
+  grid-area: product15;
+}
+
+.section-grid-20 > :nth-child(16) {
+  grid-area: product16;
+}
+
+.section-grid-20 > :nth-child(17) {
+  grid-area: product17;
+}
+
+.section-grid-20 > :nth-child(18) {
+  grid-area: product18;
+}
+
+.section-grid-20 > :nth-child(19) {
+  grid-area: product19;
+}
+
+.section-grid-20 > :nth-child(20) {
+  grid-area: product20;
+}

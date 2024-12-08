@@ -4,6 +4,9 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use App\Models\Product;
+use App\Models\GridLayout;
+use App\Models\Section;
+use App\Models\Aisle;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Product>
@@ -27,7 +30,7 @@ class ProductFactory extends Factory
         $kind = $this->faker->randomElement($kinds);
 
         // Generate a random product name based on kind
-        $name = $this->faker->word . ' ' . $this->faker->word;
+        $name = $this->faker->word();
 
         // Generate a random price (for example, $1 to $100)
         $price = $this->faker->randomFloat(2, 1, 20);
