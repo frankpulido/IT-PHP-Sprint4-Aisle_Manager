@@ -1,3 +1,11 @@
+:root {
+  --main-bg-color: #D9EAFD; /* Declare the background color */
+  --text-align: center; /* Declare text alignment */
+  --justify-content: center; /* Declare horizontal centering for grid */
+  --align-items: center; /* Declare vertical centering for grid */
+  --grid-height: 250px; /* Set a fixed height for uniformity */
+}
+
 /* Grid layout for sections with 1 product */
 .section-grid-1 {
     display: grid;
@@ -8,16 +16,20 @@
       "product1 product1 product1 product1 product1 product1 product1 product1 product1 product1 product1 product1"
       "product1 product1 product1 product1 product1 product1 product1 product1 product1 product1 product1 product1"
       "product1 product1 product1 product1 product1 product1 product1 product1 product1 product1 product1 product1";
+      height: var(--grid-height);
   }
   
   /* Assign the product to the respective grid area */
   .section-grid-1 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
 
 
-/* Grid layout for sections with 2 products */
 /* Grid layout for sections with 2 products */
 .section-grid-2 {
     display: grid;
@@ -28,15 +40,24 @@
       "product1 product1 product1 product1 product1 product1 product2 product2 product2 product2 product2 product2"
       "product1 product1 product1 product1 product1 product1 product2 product2 product2 product2 product2 product2"
       "product1 product1 product1 product1 product1 product1 product2 product2 product2 product2 product2 product2";
+      height: var(--grid-height);
   }
   
   /* Assign each product to the respective grid area */
   .section-grid-2 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-2 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }  
   
   
@@ -51,19 +72,32 @@
       "product1 product1 product1 product1 product2 product2 product2 product2 product3 product3 product3 product3"
       "product1 product1 product1 product1 product2 product2 product2 product2 product3 product3 product3 product3"
       "product1 product1 product1 product1 product2 product2 product2 product2 product3 product3 product3 product3";
+      height: var(--grid-height);
   }
   
   /* Assign each product to the respective grid area */
   .section-grid-3 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-3 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-3 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
 
@@ -78,23 +112,40 @@
       "product1 product1 product1 product2 product2 product2 product3 product3 product3 product4 product4 product4"
       "product1 product1 product1 product2 product2 product2 product3 product3 product3 product4 product4 product4"
       "product1 product1 product1 product2 product2 product2 product3 product3 product3 product4 product4 product4";
+      height: var(--grid-height);
   }
   
   /* Assign each product to the respective grid area */
   .section-grid-4 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-4 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-4 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-4 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
 
   
@@ -109,22 +160,39 @@
       "product3 product3 product3 product3 product3 product3 product4 product4 product4 product4 product4 product4"
       "product3 product3 product3 product3 product3 product3 product4 product4 product4 product4 product4 product4"
       "product3 product3 product3 product3 product3 product3 product4 product4 product4 product4 product4 product4";
+      height: var(--grid-height);
   }
   
   .section-grid-4-flexible1 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-4-flexible1 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-4-flexible1 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
   
   .section-grid-4-flexible1 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
   }
 
 
@@ -139,22 +207,39 @@
       "product1 product1 product1 product1 product1 product1 product2 product2 product2 product2 product2 product2"
       "product3 product3 product3 product3 product3 product3 product4 product4 product4 product4 product4 product4"
       "product3 product3 product3 product3 product3 product3 product4 product4 product4 product4 product4 product4";
+      height: var(--grid-height);
 }
 
 .section-grid-4-flexible2 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-4-flexible2 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-4-flexible2 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-4-flexible2 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 
@@ -169,27 +254,48 @@
       "product3 product3 product3 product3 product3 product3 product3 product3 product3 product3 product3 product3"
       "product4 product4 product4 product4 product4 product4 product4 product4 product4 product4 product4 product4"
       "product5 product5 product5 product5 product5 product5 product5 product5 product5 product5 product5 product5";
+      height: var(--grid-height);  
 }
 
 /* Assign each product to the respective grid area */
 .section-grid-5 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5 > :nth-child(5) {
     grid-area: product5;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 
@@ -203,27 +309,48 @@
       "product1 product1 product1 product2 product2 product3 product3 product4 product4 product5 product5 product5"
       "product1 product1 product1 product2 product2 product3 product3 product4 product4 product5 product5 product5"
       "product1 product1 product1 product2 product2 product3 product3 product4 product4 product5 product5 product5";
+      height: var(--grid-height);
 }
 
 /* Assign each product to the respective grid area */
 .section-grid-5-flexible1 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5-flexible1 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5-flexible1 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5-flexible1 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-5-flexible1 > :nth-child(5) {
     grid-area: product5;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 
@@ -237,30 +364,55 @@
       "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6"
       "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6"
       "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6";
+      height: var(--grid-height);
 }
 
 .section-grid-6-flexible1 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible1 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);/
 }
 
 .section-grid-6-flexible1 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible1 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible1 > :nth-child(5) {
     grid-area: product5;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible1 > :nth-child(6) {
     grid-area: product6;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 
@@ -275,30 +427,55 @@
       "product1 product1 product1 product1 product2 product2 product2 product2 product3 product3 product3 product3"
       "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6"
       "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6";
+      height: var(--grid-height);
 }
 
 .section-grid-6-flexible2 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible2 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible2 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible2 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible2 > :nth-child(5) {
     grid-area: product5;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-6-flexible2 > :nth-child(6) {
     grid-area: product6;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 
@@ -312,38 +489,71 @@
       "product1 product1 product1 product2 product2 product2 product3 product3 product3 product4 product4 product4"
       "product5 product5 product5 product6 product6 product6 product7 product7 product7 product8 product8 product8"
       "product5 product5 product5 product6 product6 product6 product7 product7 product7 product8 product8 product8";
+      height: var(--grid-height);
 }
 
 .section-grid-8-flexible1 > :nth-child(1) {
     grid-area: product1;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-8-flexible1 > :nth-child(2) {
     grid-area: product2;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-8-flexible1 > :nth-child(3) {
     grid-area: product3;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-8-flexible1 > :nth-child(4) {
     grid-area: product4;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-8-flexible1 > :nth-child(5) {
     grid-area: product5;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-8-flexible1 > :nth-child(6) {
     grid-area: product6;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-8-flexible1 > :nth-child(7) {
     grid-area: product7;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 .section-grid-8-flexible1 > :nth-child(8) {
     grid-area: product8;
+    text-align: var(--text-align);
+    justify-content: var(--justify-content);
+    align-items: var(--align-items);
+    background-color: var(--main-bg-color);
 }
 
 
@@ -357,42 +567,79 @@
     "product4 product4 product4 product4 product5 product5 product5 product5 product6 product6 product6 product6"
     "product7 product7 product7 product7 product8 product8 product8 product8 product9 product9 product9 product9"
     "product7 product7 product7 product7 product8 product8 product8 product8 product9 product9 product9 product9";
+    height: var(--grid-height);
 }
 
 .section-grid-9 > :nth-child(1) {
   grid-area: product1;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(2) {
   grid-area: product2;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(3) {
   grid-area: product3;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(4) {
   grid-area: product4;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(5) {
   grid-area: product5;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(6) {
   grid-area: product6;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(7) {
   grid-area: product7;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(8) {
   grid-area: product8;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-9 > :nth-child(9) {
   grid-area: product9;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 
@@ -406,46 +653,87 @@
     "product5 product5 product5 product5 product5 product5 product6 product6 product6 product6 product6 product6"
     "product7 product7 product7 product7 product7 product7 product8 product8 product8 product8 product8 product8"
     "product9 product9 product9 product9 product9 product9 product10 product10 product10 product10 product10 product10";
+    height: var(--grid-height);
 }
 
 .section-grid-10 > :nth-child(1) {
   grid-area: product1;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(2) {
   grid-area: product2;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(3) {
   grid-area: product3;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(4) {
   grid-area: product4;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(5) {
   grid-area: product5;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(6) {
   grid-area: product6;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(7) {
   grid-area: product7;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(8) {
   grid-area: product8;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(9) {
   grid-area: product9;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-10 > :nth-child(10) {
   grid-area: product10;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 
@@ -459,54 +747,103 @@
     "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12"
     "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12"
     "product1 product2 product3 product4 product5 product6 product7 product8 product9 product10 product11 product12";
+    height: var(--grid-height);
 }
 
 .section-grid-12 > :nth-child(1) {
   grid-area: product1;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(2) {
   grid-area: product2;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(3) {
   grid-area: product3;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(4) {
   grid-area: product4;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(5) {
   grid-area: product5;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(6) {
   grid-area: product6;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(7) {
   grid-area: product7;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(8) {
   grid-area: product8;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(9) {
   grid-area: product9;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(10) {
   grid-area: product10;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(11) {
   grid-area: product11;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-12 > :nth-child(12) {
   grid-area: product12;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 
@@ -520,66 +857,127 @@
     "product7 product7 product7 product7 product8 product8 product8 product8 product9 product9 product9 product9"
     "product10 product10 product10 product10 product11 product11 product11 product11 product12 product12 product12 product12"
     "product13 product13 product13 product13 product14 product14 product14 product14 product15 product15 product15 product15";
+    height: var(--grid-height);
 }
 
 .section-grid-15 > :nth-child(1) {
   grid-area: product1;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(2) {
   grid-area: product2;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(3) {
   grid-area: product3;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(4) {
   grid-area: product4;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(5) {
   grid-area: product5;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(6) {
   grid-area: product6;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(7) {
   grid-area: product7;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(8) {
   grid-area: product8;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(9) {
   grid-area: product9;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(10) {
   grid-area: product10;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(11) {
   grid-area: product11;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(12) {
   grid-area: product12;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(13) {
   grid-area: product13;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(14) {
   grid-area: product14;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-15 > :nth-child(15) {
   grid-area: product15;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 
@@ -592,84 +990,165 @@
     "product9 product9 product9 product10 product10 product10 product11 product11 product11 product12 product12 product12"
     "product13 product13 product13 product14 product14 product14 product15 product15 product15 product16 product16 product16"
     "product17 product17 product17 product18 product18 product18 product19 product19 product19 product20 product20 product20";
+    height: var(--grid-height);
 }
 
 .section-grid-20 > :nth-child(1) {
   grid-area: product1;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(2) {
   grid-area: product2;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(3) {
   grid-area: product3;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(4) {
   grid-area: product4;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(5) {
   grid-area: product5;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(6) {
   grid-area: product6;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(7) {
   grid-area: product7;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(8) {
   grid-area: product8;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(9) {
   grid-area: product9;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(10) {
   grid-area: product10;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(11) {
   grid-area: product11;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(12) {
   grid-area: product12;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(13) {
   grid-area: product13;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(14) {
   grid-area: product14;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(15) {
   grid-area: product15;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(16) {
   grid-area: product16;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(17) {
   grid-area: product17;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(18) {
   grid-area: product18;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(19) {
   grid-area: product19;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }
 
 .section-grid-20 > :nth-child(20) {
   grid-area: product20;
+  text-align: var(--text-align);
+  justify-content: var(--justify-content);
+  align-items: var(--align-items);
+  background-color: var(--main-bg-color);
 }

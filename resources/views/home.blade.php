@@ -41,6 +41,7 @@
 
             <article class="grid-item">
                 <h3>ENTITY RELATIONSHIP DIAGRAM | The shadowed area indicates the scope of this first stage of the Project.</h3>
+                <img src="{{asset('images/edr.png')}}" alt="EDR Aisle Manager">
             </article>
 
         </section>

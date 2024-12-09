@@ -140,7 +140,7 @@ header{
 
 .nested-grid-home {
     display: grid;
-    grid-template-columns: 1.5fr 2.5fr;
+    grid-template-columns: 2fr 2.5fr;
     gap: 10px;  /* El PADDING no es necesario porque tenemos el GAP del GRID superior (grid-container) */
 }
 
@@ -197,6 +197,12 @@ header{
     background-color: aliceblue;
     padding: 10px;
     box-sizing: border-box;
+}
+
+.grid-item img {
+    display: block;      /* Makes the image a block-level element */
+    margin-left: auto;   /* Automatically adjust the left margin */
+    margin-right: auto;  /* Automatically adjust the right margin */
 }
 
 button {
@@ -284,6 +290,17 @@ button {
 
 
 /* STYLE OF BUTTONS IN JS */
+
+.tooltip.rajdhani-light {
+    font-family: 'Rajdhani', sans-serif;
+    font-weight: 300; /* Ensure light weight is applied */
+    font-style: normal;
+    /*font-size: 14px;  /* Adjust size if necessary */
+    text-align: center;
+    color: #fff; /* Tooltip text color */
+
+}
+
 
 /* Modal Styles */
 .modal {

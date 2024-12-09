@@ -29,12 +29,50 @@
                             $totalPositions = $section->number_products;
                             $products = $section->products->keyBy('section_order'); // Organize by section_order for quick lookup
                         @endphp
+                        
+                        
+                        <!-- ******************************************* -->
+
+                        
+                        @php
+                            // Check if there is a valid grid layout for the section
+                            $gridLayout = $section->gridLayout;
+                            if ($gridLayout) {
+                                // Retrieve the CSS class for the grid layout
+                                $gridClass = $gridLayout->gridlayoutcss;
+                            }
+                        @endphp
+
+                        @if ($gridLayout)
+                            <!-- Only render the section if gridLayout exists -->
+                            <section>
+                                <div class="{{ $gridClass }}">
+                                @for ($i = 1; $i <= $section->number_products; $i++)
+                                    <div class="grid-item nth-child-{{ $i }}">
+                                        @if ($products->has($i))
+                                            @php
+                                                $product = $products[$i];
+                                            @endphp
+                                            <h5 class="rajdhani-light">ID: {{ $product->id }}</h5>
+                                        @else
+                                            <!-- Leave empty if no product exists for this position -->
+                                        @endif
+                                    </div>
+                                @endfor
+                                </div>
+                            </section>
+                        @endif
+
+
+                        <!-- ******************************************* -->
+
 
                         @for ($position = 1; $position <= $totalPositions; $position++)
                             @if ($products->has($position))
                                 @php $product = $products[$position]; @endphp
                                 <!-- Assigned Product Button -->
                                 <button class="product-button assigned" data-product-id="{{ $product->id }}">
+                                    Product ID: {{ $product->id }} orphaned<br>
                                     Product Name: {{ $product->name }}<br>
                                     Kind: {{ $product->kind }}<br>
                                     Price: ${{ number_format($product->price, 2) }}
