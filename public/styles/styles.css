@@ -3,6 +3,13 @@ body{
     margin: auto;
 }
 
+a{
+    color:black;
+    text-decoration: none;
+    text-align: center;
+    font-size: small;
+}
+
 .rajdhani-light {
     font-family: "Rajdhani", sans-serif;
     font-weight: 300;
@@ -281,10 +288,12 @@ button {
 
 .product-button.assigned {
     background-color: #d4edda; /* Green */
+    text-decoration: none;
 }
 
 .product-button.unassigned {
     background-color: #f8d7da; /* Red */
+    text-decoration: none;
 }
 
 

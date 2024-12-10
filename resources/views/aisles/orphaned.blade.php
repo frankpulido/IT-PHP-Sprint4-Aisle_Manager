@@ -9,7 +9,7 @@
 
     <div>
         <h1 class="rajdhani-light">Orphaned Sections</h1>
-        <p class="rajdhani-light">[ "DRAFTS" UNDER STUDY ] Below are sections that are not yet assigned to any aisle.</p>
+        <p class="rajdhani-light">ORPHANED SECTIONS below are are not yet assigned to any aisle.</p>
     </div>
 
     <section class="grid-container">

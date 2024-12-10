@@ -31,8 +31,6 @@ class SectionFactory extends Factory
         return [
             'kind' => $this->faker->randomElement($kinds),
             'number_products' => $this->faker->numberBetween(1, 12),
-            //'products' => null,
-            //'php_layout' => null,  // For now, we leave it as null
         ];
     }
 }

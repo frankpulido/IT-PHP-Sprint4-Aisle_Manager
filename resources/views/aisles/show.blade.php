@@ -26,8 +26,8 @@
                     @if ($sections->has($i))
                         @php $section = $sections[$i]; @endphp
                         @php $totalRevenue = $section->products->sum('revenues_year'); @endphp
-                        <a href="{{ url('sections/' . $section->id) }}" class="aisle-link" data-total-revenue="{{ $totalRevenue }}">
-                            Position: {{ $i }} | Section ID: {{ $section->id }}<br>
+                        <a href="{{ url('section/' . $section->id) }}" class="aisle-link" data-total-revenue="{{ $totalRevenue }}">
+                            SECTION ID: {{ $section->id }} | Position: {{ $i }}<br>
                             Kind: {{ $section->kind }}
                         </a>
 
@@ -109,7 +109,12 @@
                     const totalRevenue = this.getAttribute('data-total-revenue');
                     const tooltip = document.createElement('div');
                     tooltip.className = 'tooltip rajdhani-light';
-                    tooltip.textContent = `Annual Revenue: $${parseFloat(totalRevenue).toFixed(2)}`;
+                    //tooltip.textContent = `Annual Revenue: $${parseFloat(totalRevenue).toFixed(2)}`;
+                    tooltip.textContent = `Annual Revenue: $ ${new Intl.NumberFormat('en-US', {
+                        style: 'decimal',
+                        minimumFractionDigits: 2,
+                        maximumFractionDigits: 2
+                    }).format(totalRevenue)}`;
                     tooltip.style.position = 'absolute';
                     tooltip.style.backgroundColor = '#333';
                     tooltip.style.color = '#fff';

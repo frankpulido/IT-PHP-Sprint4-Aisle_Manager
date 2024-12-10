@@ -11,8 +11,8 @@ class Section extends Model
     use HasFactory;
     protected $table = 'sections'; // This was added by me (not really necessary because I used class plural)
     protected $fillable = [ // These are the only attributes that can be mass-assigned by faker
-        'aisle_id',
-        'aisle_order',
+        //'aisle_id',
+        //'aisle_order',
         'kind', // An enum identifying the kind od products displayed in each section (same enum column for products, must match)
         'number_products',
         //'products',

@@ -34,7 +34,7 @@ class SectionSeeder extends Seeder
             Section::create($section);
         }
 
-        Section::factory()->count(24)->create();
+        //Section::factory()->count(24)->create();
     }
 }
 ?>

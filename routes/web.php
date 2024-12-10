@@ -15,7 +15,11 @@ Route::get('/', HomeController::class)->name('home');
 
 Route::get('/aisles', [AisleController::class, 'index'])->name('aisles.index'); // Renders the Grocery Store Floorplan (8 aisles)
 
-Route::get('/aisles/{id}/', [AisleController::class, 'show'])->name('aisles.show'); // Renders the 8 aisle sections of a given aisle
+Route::get('/aisles/{id}/', [AisleController::class, 'showAisle'])->name('aisles.showAisle'); // Renders the 8 aisle sections of a given aisle and products nested in them
+
+Route::get('/section/{id}', [AisleController::class, 'showSection'])->name('sections.showSection'); // Renders details of a section with products
+
+Route::get('/sections/orphaned', [AisleController::class, 'orphanedSections'])->name('sections.orphaned'); // Renders Orphaned Sections to Allocate
 
 // POST route for swapping aisles
 Route::post('/swap-aisles', [AisleController::class, 'swapAisles'])->name('aisles.swap');
@@ -23,7 +27,6 @@ Route::post('/swap-aisles', [AisleController::class, 'swapAisles'])->name('aisle
 // POST route for swapping sections
 Route::post('/swap-sections', [AisleController::class, 'swapSections'])->name('sections.swap');
 
-Route::get('/sections/orphaned', [AisleController::class, 'orphanedSections'])->name('sections.orphaned'); // Renders Orphaned Sections to Allocate
 
 // Defines the route to fetch product details
 //Route::get('/aisles/{aisleId}/products/{productId}', [ProductController::class, 'show']);
@@ -32,7 +35,7 @@ Route::get('/sections/orphaned', [AisleController::class, 'orphanedSections'])->
 
 Route::get('/sections', [SectionController::class, 'all']); // All sections regadless of allocation
 
-Route::get('/section/{id}', [SectionController::class, 'show'])->name('sections.show'); // Renders details of a section
+//Route::get('/section/{id}', [SectionController::class, 'show'])->name('sections.show'); // Renders details of a section
 
 
 
