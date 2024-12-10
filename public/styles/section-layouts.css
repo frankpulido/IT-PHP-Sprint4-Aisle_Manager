@@ -3,7 +3,7 @@
   --text-align: center; /* Declare text alignment */
   --justify-content: center; /* Declare horizontal centering for grid */
   --align-items: center; /* Declare vertical centering for grid */
-  --grid-height: 250px; /* Set a fixed height for uniformity */
+  --grid-height: 550px; /* Set a fixed height for uniformity */
 }
 
 /* Grid layout for sections with 1 product */

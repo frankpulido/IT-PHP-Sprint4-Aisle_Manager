@@ -155,6 +155,8 @@ header{
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     gap: 10px;  /* El PADDING no es necesario porque tenemos el GAP del GRID superior (grid-container) */
+    grid-auto-rows: auto; /* Rows adjust to the tallest item */
+    align-items: stretch; /* Ensure grid items fill row height */
 }
 
 .nested-grid-horizontal {
