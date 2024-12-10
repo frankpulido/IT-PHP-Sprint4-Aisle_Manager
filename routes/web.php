@@ -21,6 +21,8 @@ Route::get('/section/{id}', [AisleController::class, 'showSection'])->name('sect
 
 Route::get('/sections/orphaned', [AisleController::class, 'orphanedSections'])->name('sections.orphaned'); // Renders Orphaned Sections to Allocate
 
+Route::get('/create', [AisleController::class, 'createSection'])->name('section.create'); // Show available layouts to start creating a section
+
 // POST route for swapping aisles
 Route::post('/swap-aisles', [AisleController::class, 'swapAisles'])->name('aisles.swap');
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Models\Aisle;
+use App\Models\GridLayout;
 use App\Models\Section;
 use Illuminate\Http\Request;
 
@@ -157,6 +158,13 @@ class AisleController extends Controller
             ->get();
 
         return view('aisles.orphaned', compact('sections'));
+    }
+
+    public function createSection()
+    {
+        // Retrieve layouts
+        $layouts = GridLayout::all();
+        return view('aisles.create', compact('layouts'));
     }
 
 
