@@ -8,8 +8,8 @@
     @include('components.header')
 
     <div>
-        <h1 class="rajdhani-light">Create Section -> Click on the "head" of your preferred layout to proceed.</h1>
-        <p class="rajdhani-light">SUGGESTION : You can check whether there is an ORPHANED SECTION that suits well and nest it in the Aisle.</p>
+        <h1 class="rajdhani-light">Create Section for Aisle {{$aisleId}} | Position {{$position}} -> Click on the "head" of your preferred layout to proceed.</h1>
+        <p class="rajdhani-light">SUGGESTION : Check whether there is an ORPHANED SECTION that suits well and nest it in the Aisle.</p>
     </div>
 
     <section class="grid-container">

@@ -90,7 +90,8 @@
 
                 <article class="grid-item">
 
-                    <a href="{{ url('aisles/' . $aisle->id) }}" class="aisle-link" data-total-revenue="{{ $totalRevenue }}">
+                    <a href="{{ route('aisles.showAisle', ['id' => $aisle->id]) }}" class="aisle-link" data-total-revenue="{{ $totalRevenue }}">
+                    <!--<a href="{{ url('aisles/' . $aisle->id) }}" class="aisle-link" data-total-revenue="{{ $totalRevenue }}">-->
                         AISLE ID : {{ $aisle->id }} | NAME: {{ $aisle->name }}
                     </a>
 
@@ -118,18 +119,14 @@
                                 </button>
                                 -->
                             @else
-                                <a href="#" class="section-button unassigned">
-                                    Position: {{ $position }}<br>
-                                    Section Unassigned<br>
-                                    Products: {{ $section->number_products }}
-                                </a>
-                                <!--
-                                <button class="section-button unassigned" data-position="{{ $position }}">
-                                    Position: {{ $position }}<br>
-                                    Section Unassigned<br>
-                                    Products: {{ $section->number_products }}
-                                </button>
+                                <!--<a href="{{ url('create', ['aisle_id' => $aisle->id, 'position' => $position]) }}" class="section-button unassigned">
                                 -->
+                                <a href="{{ route('section.create', ['aisle_id' => $aisle->id, 'position' => $position]) }}" class="section-button unassigned">
+                                    Position: {{ $position }}<br>
+                                    Section Unassigned<br>
+                                    Products: 0
+                                </a>
+                                
                             @endif
                         @endfor
                     </div>

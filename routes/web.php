@@ -30,40 +30,28 @@ Route::post('/swap-aisles', [AisleController::class, 'swapAisles'])->name('aisle
 Route::post('/swap-sections', [AisleController::class, 'swapSections'])->name('sections.swap');
 
 
-// Defines the route to fetch product details
-//Route::get('/aisles/{aisleId}/products/{productId}', [ProductController::class, 'show']);
 
 
-
+// Showing jsons - decide whether to eliminate not only the route below but also SectionController (use AisleController for handling all routes) and leave ProductController for future development
 Route::get('/sections', [SectionController::class, 'all']); // All sections regadless of allocation
 
-//Route::get('/section/{id}', [SectionController::class, 'show'])->name('sections.show'); // Renders details of a section
+
+
 
 
 
 // ROUTES BELOW ARE NOT IN USE
 
-Route::get('/aisles/create', [AisleController::class, 'create']); // Not in use (for future development)
+Route::get('/section/create', [SectionController::class, 'create']);
 
 Route::get('/aisles/{id}/{category?}', [AisleController::class, 'map']);
 // Question mark after category declares variable as optional
 // if ($category) {return "This view will map the aisle \"{$id}\" and the products stored in the shelves \"{$category}\"...";}
 // return "This view will map the aisle \"{$id}\".";
 
+// Defines the route to fetch product details
+//Route::get('/aisles/{aisleId}/products/{productId}', [ProductController::class, 'show']);
 
-
-Route::get('/section/create', [SectionController::class, 'create']);
-
-/*
-Route::get('/test_crud', function(){
-    // Create AISLE
-    $aisle = new Aisle;
-    $table->string = 'AISLE 1';
-    $table->json('sections');
-    $table->string('php_layout');
-    $aisle->save();
-})
-*/
 
 /*
 GET

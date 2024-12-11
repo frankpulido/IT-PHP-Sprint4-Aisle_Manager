@@ -88,7 +88,8 @@
                             @endfor
                         </div>
                     @else
-                        <a href="#" class="aisle-link">
+                        <!--<a href="{{ url('create/') }}" class="aisle-link">-->
+                        <a href="{{ route('section.create', ['aisle_id' => $aisle->id, 'position' => $i]) }}" class="section-button unassigned">
                             Position: {{ $i }} | Unassigned<br>
                             No Section
                         </a>
@@ -109,7 +110,6 @@
                     const totalRevenue = this.getAttribute('data-total-revenue');
                     const tooltip = document.createElement('div');
                     tooltip.className = 'tooltip rajdhani-light';
-                    //tooltip.textContent = `Annual Revenue: $${parseFloat(totalRevenue).toFixed(2)}`;
                     tooltip.textContent = `Annual Revenue: $ ${new Intl.NumberFormat('en-US', {
                         style: 'decimal',
                         minimumFractionDigits: 2,
@@ -121,23 +121,13 @@
                     tooltip.style.padding = '5px';
                     tooltip.style.borderRadius = '5px';
                     tooltip.style.zIndex = '1000'; // NEW
-                    
-                    /*
-                    tooltip.style.top = `${linkRect.top - tooltipRect.height - 10}px`; // Position above the link with spacing
-                    tooltip.style.left = `${linkRect.left + (linkRect.width / 2) - (tooltipRect.width / 2)}px`; // Center horizontally
-                    */
+                
                     tooltip.style.top = `${this.getBoundingClientRect().top - 30}px`;
                     tooltip.style.left = `${this.getBoundingClientRect().left}px`;
 
                     tooltip.id = 'tooltip';
-                    /*tooltip.style.whiteSpace = 'nowrap'; // NEW : Ensure the text does not wrap*/
                     document.body.appendChild(tooltip);
                 });
-
-                /*
-                const linkRect = this.getBoundingClientRect();
-                const tooltipRect = tooltip.getBoundingClientRect();
-                */
 
                 link.addEventListener('mouseleave', function () {
                     const tooltip = document.getElementById('tooltip');

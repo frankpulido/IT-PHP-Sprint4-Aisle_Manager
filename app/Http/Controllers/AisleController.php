@@ -45,7 +45,13 @@ class AisleController extends Controller
     }
 
     public function showSection($id) {
-        return "This page will show details of section $id";
+        $section = Section::with([
+            'products' => function ($query) {
+                $query->orderBy('section_order');
+            }
+        ])->find($id);
+        return $section;
+        // return "This page will show details of section $id";
         //return view('sections.show', ['id' => $id]); // returns sections/show.blade.php passing variable "id"
         //$section = Section::find($id); // OJO, ABAJO HAY QUE PASAR TB LA $SECTION
         //return view('sections.show', compact('id')); // returns sections/show.blade.php passing variable "id"
@@ -160,11 +166,16 @@ class AisleController extends Controller
         return view('aisles.orphaned', compact('sections'));
     }
 
-    public function createSection()
+    public function createSection(Request $request)
     {
         // Retrieve layouts
         $layouts = GridLayout::all();
-        return view('aisles.create', compact('layouts'));
+
+        // Get coordinates (query) to nest in the right place
+        $aisleId = $request->query('aisle_id');
+        $position = $request->query('position');
+
+        return view('aisles.create', compact('layouts', 'aisleId', 'position'));
     }
 
 
