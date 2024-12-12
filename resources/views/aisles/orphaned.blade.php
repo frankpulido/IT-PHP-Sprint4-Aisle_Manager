@@ -8,20 +8,73 @@
     @include('components.header')
 
     <div>
-        <h1 class="rajdhani-light">Orphaned Sections -> Click on "head" to edit and nest in Aisle.</h1>
+        <h1 class="rajdhani-light">Orphaned Sections -> Click on column column "head" to edit and nest in Aisle.</h1>
         <p class="rajdhani-light">ORPHANED SECTIONS below are are not yet assigned to any aisle.</p>
     </div>
+
+    <section class="grid-container">
+        <section class="grid-item">
+
+        <!-- Swap Form -->
+
+        <form action="{{ route('aisles.nestOrphaned') }}" method="POST" class="nest-orphaned-form">
+            @csrf
+
+            <!-- Dropdown for selecting aisle -->
+            <label for="aisle_id">Select Aisle:</label>
+            <select name="aisle_id" id="aisle_id" required>
+                @foreach ($aisles as $aisle)
+                    <option value="{{ $aisle->id }}" {{ $loop->first ? 'selected' : '' }}>
+                        Aisle {{ $aisle->id }}: {{ $aisle->name }}
+                    </option>
+                @endforeach
+            </select>
+
+            <!-- Dropdown for selecting position -->
+            <label for="aisle_order">Select Position:</label>
+            <select name="aisle_order" id="aisle_order" required>
+                @foreach (range(1, $aisles->max('number_sections')) as $position)
+                    <option value="{{ $position }}" {{ $loop->first ? 'selected' : '' }}>
+                        Position {{ $position }}
+                    </option>
+                @endforeach
+            </select>
+
+        <!-- Swap Form ENDS -->
+
+        </section>
+    </section>
+
 
     <section class="grid-container">
         <section class="nested-grid-8 rajdhani-light">
             @forelse ($sections as $section)
                 <article class="grid-item">
-                    <!-- Section Link -->
+                    <!-- Section Link
                     <a href="{{ url('sections/' . $section->id) }}" class="aisle-link">
                         Section ID: {{ $section->id }}<br>
                         Kind: {{ $section->kind }}<br>
                         SET FOR {{ $section->number_products }} Products
                     </a>
+                    -->
+                    <!--
+                    <a href="{{ route('aisles.nestOrphaned', ['orphaned_section_id' => $section->id, 'aisle_id' => 'placeholder', 'aisle_order' => 'placeholder']) }}" class="aisle-link">
+                        Section ID: {{ $section->id }}<br>
+                        Kind: {{ $section->kind }}<br>
+                        SET FOR {{ $section->number_products }} Products
+                    </a>
+                    -->
+
+                    <a href="{{ route('aisles.nestOrphaned', [
+                            'orphaned_section_id' => $section->id,
+                            'aisle_id' => $aisles->first()->id, // Default or selected aisle in form
+                            'aisle_order' => 1 // Default or selected position in form
+                        ]) }}" class="aisle-link">
+                        Section ID: {{ $section->id }}<br>
+                        Kind: {{ $section->kind }}<br>
+                        SET FOR {{ $section->number_products }} Products
+                    </a>
+
 
                     <!-- Products in the Section -->
                     <div class="products">

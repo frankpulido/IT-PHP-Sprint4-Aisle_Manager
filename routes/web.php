@@ -17,17 +17,32 @@ Route::get('/aisles', [AisleController::class, 'index'])->name('aisles.index'); 
 
 Route::get('/aisles/{id}/', [AisleController::class, 'showAisle'])->name('aisles.showAisle'); // Renders the 8 aisle sections of a given aisle and products nested in them
 
-Route::get('/section/{id}', [AisleController::class, 'showSection'])->name('sections.showSection'); // Renders details of a section with products
+Route::get('/section/{id}', [AisleController::class, 'showSection'])->name('sections.show'); // Renders details of a section with products
 
 Route::get('/sections/orphaned', [AisleController::class, 'orphanedSections'])->name('sections.orphaned'); // Renders Orphaned Sections to Allocate
 
+
+
+// TERMINAR GET route for swapping Orphaned Section with any section in Aisles
+Route::get('/nest-orphaned', [AisleController::class, 'nestOrphaned'])->name('aisles.nestOrphaned');
+
+// TERMINAR
 Route::get('/create', [AisleController::class, 'createSection'])->name('section.create'); // Show available layouts to start creating a section
+
+// TERMINAR
+
+
+// TERMINAR
+Route::get('/edit', [AisleController::class, 'editSection'])->name('section.edit'); // Edit section
+
+
 
 // POST route for swapping aisles
 Route::post('/swap-aisles', [AisleController::class, 'swapAisles'])->name('aisles.swap');
 
 // POST route for swapping sections
 Route::post('/swap-sections', [AisleController::class, 'swapSections'])->name('sections.swap');
+
 
 
 

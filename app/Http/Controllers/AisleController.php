@@ -17,12 +17,7 @@ class AisleController extends Controller
         return view('aisles.index', ['aisles' => $aisles]);
     }
 
-    /* SEE BELOW
-    public function show($id) {
-        //$aisle = Aisle::find($id);
-        //return $aisle;
-    }
-    */
+    
 
     public function showAisle($id) {
         // Retrieve the aisle with its sections and their products
@@ -44,17 +39,16 @@ class AisleController extends Controller
         return view('aisles.show', compact('aisle'));
     }
 
+
+
     public function showSection($id) {
         $section = Section::with([
             'products' => function ($query) {
                 $query->orderBy('section_order');
             }
         ])->find($id);
-        return $section;
-        // return "This page will show details of section $id";
-        //return view('sections.show', ['id' => $id]); // returns sections/show.blade.php passing variable "id"
-        //$section = Section::find($id); // OJO, ABAJO HAY QUE PASAR TB LA $SECTION
-        //return view('sections.show', compact('id')); // returns sections/show.blade.php passing variable "id"
+        //return $section;
+        return view('sections.show', compact('section')); // returns sections/show.blade.php
     }
 
 
@@ -156,15 +150,51 @@ class AisleController extends Controller
         return redirect()->route('aisles.index')->with('error', 'Sections not found.');
     }
 
+
     public function orphanedSections()
     {
-        // Retrieve sections where aisle_id and aisle_order are null
+        // Retrieve ALL possible locations within the store
+        $aisles = Aisle::all();
+
+        // Retrieve Sections where aisle_id and aisle_order are null
         $sections = Section::whereNull('aisle_id')->whereNull('aisle_order')
             ->with('products') // Load related products
             ->get();
 
-        return view('aisles.orphaned', compact('sections'));
+        return view('aisles.orphaned', compact('sections', 'aisles'));
     }
+
+
+    public function nestOrphaned(Request $request)
+    {
+        // Validate the Form input
+        $request->validate([
+            'orphaned_section_id' => 'required|exists:sections,id',
+            'aisle_id' => 'required|exists:aisles,id',
+            'aisle_order' => 'required|integer|min:1',
+        ]);
+
+        $orphanedSection = Section::findOrFail($request->orphaned_section_id);
+
+        // Assign the first matching grid layout (number products)
+        $gridLayout = GridLayout::where('number_products', $orphanedSection->number_products)->first();
+        if (!$gridLayout) {
+            return redirect()->back()->withErrors('No matching grid layout found for the orphaned section.');
+        }
+
+        // Update the orphaned section
+        $orphanedSection->grid_id = $gridLayout->id;
+        $orphanedSection->aisle_id = $request->aisle_id;
+        $orphanedSection->aisle_order = $request->aisle_order;
+        $orphanedSection->save();
+
+        // Call swapSections to handle potential conflicts
+        $this->swapSections($request);
+
+        // GOTO index view
+        return redirect()->route('aisles.index')->with('success', 'Orphaned section successfully nested and swapped!');
+    }
+
 
     public function createSection(Request $request)
     {
@@ -178,44 +208,26 @@ class AisleController extends Controller
         return view('aisles.create', compact('layouts', 'aisleId', 'position'));
     }
 
+    public function editSection()
+    {
 
-
-
-
-
-
-
-    // Code below is not in use
-
-    
-    
-    public function create() {
-        return view('aisles.create');
-        /* Ver minuto 06:00 Episodio Lista Coders Free "09 - Eloquent - Curso Laravel 11 desde cero"
-        $aisle = new Aisle();
-        $aisle->name = 'Perishable';
-        $aisle->number_products = 8;
-        $aisle->save();
-        return $aisle;
-        */
     }
 
-    /*
-    public function find($id) {
-    $aisle = Aisle::find($id);
+
+
+
+
+    
+    
+
+    /* Ver minuto 06:00 Episodio Lista Coders Free "09 - Eloquent - Curso Laravel 11 desde cero"
+    $aisle = new Aisle();
+    $aisle->name = 'Perishable';
+    $aisle->number_products = 8;
+    $aisle->save();
     return $aisle;
-    }
     */
+    
 
-    public function map($id, $category = 'ALL') {
-        //dd($id, $category); // dump and die debugging... variables are being passed
-        return view('aisles.map', ['aisle' => $id, 'category' => $category]);
-        /*
-        if ($category) {return "This view will map the aisle \"{$aisle}\" and the products stored in the shelves of section \"{$category}\"...";}
-        return "This view will map the aisle \"{$aisle}\".";
-        */
-        // $aisle = 1 - 2 - 3
-        // $category = sodas, water, beer, dairy
-    }
 }
 ?>

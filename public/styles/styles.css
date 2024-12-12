@@ -171,6 +171,12 @@ header{
     gap: 10px;  /* El PADDING no es necesario porque tenemos el GAP del GRID superior (grid-container) */
 }
 
+.nested-grid-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 10px;  /* El PADDING no es necesario porque tenemos el GAP del GRID superior (grid-container) */
+}
+
 .nested-grid-8 {
     display: grid;
     grid-template-columns: repeat(8, 1fr);

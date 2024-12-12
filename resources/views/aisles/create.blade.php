@@ -13,7 +13,7 @@
     </div>
 
     <section class="grid-container">
-        <section class="nested-grid rajdhani-light">
+        <section class="nested-grid-2 rajdhani-light">
             @php
                 $totalLayouts = $layouts->count();
             @endphp
@@ -22,8 +22,18 @@
                 @foreach ($layouts as $layout)
                     @php
                         $gridClass = $layout->gridlayoutcss;
+                        $numberProducts = $layout->number_products;
                     @endphp
                     <article class="grid-item">
+
+                        <!-- TEST TO REPLACE href BELOW
+                        <a href="{{ route('section.edit', [
+                                'gridlayoutcss' => $layout->gridlayoutcss,
+                                'number_products' => $layout->number_products,
+                            ]) }}" class="aisle-link"
+                        >
+                        -->
+
                         <a href="#" class="aisle-link">
                             {{ $layout->number_products }} PRODUCTS<br>
                             {{ $gridClass }}<br>

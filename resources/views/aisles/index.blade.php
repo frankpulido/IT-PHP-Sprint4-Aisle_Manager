@@ -7,13 +7,12 @@
 <body>
     @include('components.header')
     <h1 class="rajdhani-light">FLOORPLAN of the grocery store</h1>
-    <?php //echo $aisles ?>
 
     <!-- Swap Forms -->
     <section class="grid-container">
         <section class="nested-grid-2 rajdhani-light">
 
-            <!-- SWAP AISLES -->
+            <!-- SWAP AISLES FORM -->
             <section class="grid-item">
 
                 <form method="POST" action="{{ route('aisles.swap') }}">
@@ -39,7 +38,7 @@
 
             </section>
 
-            <!-- SWAP SECTIONS -->
+            <!-- SWAP SECTIONS FORM -->
             <section class="grid-item">
 
             <form method="POST" action="{{ route('sections.swap') }}">

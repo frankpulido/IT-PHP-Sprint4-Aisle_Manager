@@ -19,18 +19,12 @@ class SectionFactory extends Factory
     {
         $kinds = ['food', 'fresh food', 'personal care', 'cleaning', 'dairy', 'beer', 'water', 'beverages'];
         // Important : database/migrations/2024_11_27_101432_create_sections_table.php must have matching enums
-        // Randomly choose a kind
-        //$kind = $this->faker->randomElement($kinds);
 
-        // Random number of products (e.g., between 1 and 24 for the section)
-        //$numberProducts = $this->faker->numberBetween(1, 24);
-
-        // Create a random array of product IDs, ensure it doesn't exceed the number of products
-        //$products = $this->faker->randomElements(range(1, 50), $numberProducts);
+        $existentSectionLayouts = [1, 2, 3, 4, 5, 6, 8, 9, 10, 12, 15, 20];
 
         return [
             'kind' => $this->faker->randomElement($kinds),
-            'number_products' => $this->faker->numberBetween(1, 12),
+            'number_products' => $this->faker->randomElement($existentSectionLayouts),
         ];
     }
 }
