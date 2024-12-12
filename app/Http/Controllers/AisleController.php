@@ -6,6 +6,8 @@ use App\Models\GridLayout;
 use App\Models\Section;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+
 
 class AisleController extends Controller
 {
@@ -162,7 +164,7 @@ class AisleController extends Controller
             ->with('products') // Load related products
             ->get();
 
-        return view('aisles.orphaned', compact('sections', 'aisles'));
+        return view('sections.orphaned', compact('sections', 'aisles'));
     }
 
 
@@ -174,28 +176,40 @@ class AisleController extends Controller
             'aisle_id' => 'required|exists:aisles,id',
             'aisle_order' => 'required|integer|min:1',
         ]);
-
-        $orphanedSection = Section::findOrFail($request->orphaned_section_id);
-
-        // Assign the first matching grid layout (number products)
+    
+        // Retrieve the orphaned section
+        $orphanedSection = Section::findOrFail($request->input('orphaned_section_id'));
+    
+        // Assign the first matching grid layout (number of products)
         $gridLayout = GridLayout::where('number_products', $orphanedSection->number_products)->first();
         if (!$gridLayout) {
             return redirect()->back()->withErrors('No matching grid layout found for the orphaned section.');
         }
-
+    
+        // Retrieve the section currently occupying the selected position
+        $aisle_id = $request->input('aisle_id');
+        $aisle_order = $request->input('aisle_order');
+        $sectionToReplace = Section::where('aisle_id', $aisle_id)
+                                    ->where('aisle_order', $aisle_order)
+                                    ->first();
+    
+        // Clear the position if a section exists
+        if ($sectionToReplace) {
+            $sectionToReplace->aisle_id = null;
+            $sectionToReplace->aisle_order = null;
+            $sectionToReplace->update();
+        }
+    
         // Update the orphaned section
         $orphanedSection->grid_id = $gridLayout->id;
-        $orphanedSection->aisle_id = $request->aisle_id;
-        $orphanedSection->aisle_order = $request->aisle_order;
+        $orphanedSection->aisle_id = $aisle_id;
+        $orphanedSection->aisle_order = $aisle_order;
         $orphanedSection->save();
-
-        // Call swapSections to handle potential conflicts
-        $this->swapSections($request);
-
-        // GOTO index view
-        return redirect()->route('aisles.index')->with('success', 'Orphaned section successfully nested and swapped!');
+    
+        // Redirect to the index view
+        return redirect()->route('aisles.index')->with('success', 'Orphaned section successfully nested!');
     }
-
+    
 
 
     public function createSection(Request $request)
@@ -223,35 +237,43 @@ class AisleController extends Controller
 
 
     public function updateSection(Request $request)
-{
-    $section = Section::findOrFail($request->section_id);
+    {
+        
+        $section = Section::findOrFail($request->section_id);
+        //Log::info('Request Data:', $request->all()); // debugging with logs/laravel.log
 
-    // Validate the request
-    $request->validate([
-        'matching_products.*' => 'nullable|exists:products,id',
-    ]);
+        // Validate the request
+        $request->validate([
+            'matching_products.*' => 'nullable|exists:products,id',
+            //'matching_products.*' => 'exists:products,id',
+        ]);
 
-    // Update products in the section
-    foreach ($request->matching_products as $section_order => $product_id) {
-        if ($product_id) {
-            $product = Product::findOrFail($product_id);
-            $product->update([
-                'section_id' => $section->id,
-                'section_order' => $section_order,
-            ]);
+        
+        // Withdraw existing products from the Section. Remember migration restriction :
+        // $table->unique(['section_id', 'section_order'], 'position_unique');
+        Product::where('section_id', $section->id)
+        ->update(['section_id' => null, 'section_order' => null]);
+
+
+        // Update products in the section
+        foreach ($request->matching_products as $section_order => $product_id) {
+
+            $section_order = (int) $section_order; // Explicitly cast to integer!!!!!!!!! (so many hours thinking this over)
+            
+            if ($product_id) {
+                Product::findOrFail($product_id)->update([
+                    'id' => $section->id,
+                    'section_order' => $section_order,
+                ]);
+            }
         }
+
+        // Redirect back to the section view
+        return redirect()->route('sections.show', ['id' => $section->id])
+            ->with('success', 'Section updated successfully!');
     }
 
-    // Redirect back to the section view
-    return redirect()->route('section.show', ['section_id' => $section->id])
-        ->with('success', 'Section updated successfully!');
-}
 
-
-
-
-
-    
     
 
     /* Ver minuto 06:00 Episodio Lista Coders Free "09 - Eloquent - Curso Laravel 11 desde cero"

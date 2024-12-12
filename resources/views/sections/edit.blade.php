@@ -57,6 +57,9 @@
                     @csrf
                     <input type="hidden" name="section_id" value="{{ $section->id }}">
 
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary">Save Changes</button>
+
                     @if ($gridLayout)
                         <section>
                         <div class="{{ $gridClass }}" style="display: flex; flex-direction: column; gap: 5px;">
@@ -64,9 +67,9 @@
                                 <div class="grid-item nth-child-{{ $k }}" style="display: flex; flex-direction: column;border: 1px solid #ccc; padding: 10px;">
                                     <label for="product_{{ $k }}">Position {{ $k }}:</label>
                                     @if ($products->has($k))
-                                        <p>Current: {{ $products[$k]->name }} (ID: {{ $products[$k]->id }})</p>
+                                        <p>Product ID : {{ $products[$k]->name }} (ID: {{ $products[$k]->id }})</p>
                                     @else
-                                        <p>Current: None</p>
+                                        <p>Product ID : None</p>
                                     @endif
                                     <select name="matching_products[{{ $k }}]" id="product_{{ $k }}" style="width: 100%; padding: 5px;">
                                         <option value="">-- Select Product of Section Kind --</option>
@@ -83,8 +86,6 @@
                         </section>
                     @endif
 
-                    <!-- Submit Button -->
-                    <button type="submit" class="btn btn-primary">Save Changes</button>
                 </form>
             </article>
 

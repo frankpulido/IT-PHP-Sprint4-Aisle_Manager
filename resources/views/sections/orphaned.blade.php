@@ -22,9 +22,9 @@
 
             <!-- Dropdown for selecting aisle -->
             <label for="aisle_id">Select Aisle:</label>
-            <select name="aisle_id" id="aisle_id" required>
+            <select id="aisle_id" required>
                 @foreach ($aisles as $aisle)
-                    <option value="{{ $aisle->id }}" {{ $loop->first ? 'selected' : '' }}>
+                    <option value="{{ $aisle->id }}">
                         Aisle {{ $aisle->id }}: {{ $aisle->name }}
                     </option>
                 @endforeach
@@ -34,11 +34,14 @@
             <label for="aisle_order">Select Position:</label>
             <select name="aisle_order" id="aisle_order" required>
                 @foreach (range(1, $aisles->max('number_sections')) as $position)
-                    <option value="{{ $position }}" {{ $loop->first ? 'selected' : '' }}>
+                    <option value="{{ $position }}">
                         Position {{ $position }}
                     </option>
                 @endforeach
             </select>
+
+            <!-- Hidden Input for Section ID -->
+            <input type="hidden" name="orphaned_section_id" id="orphaned_section_id" value="">
 
         <!-- Swap Form ENDS -->
 
@@ -50,21 +53,7 @@
         <section class="nested-grid-8 rajdhani-light">
             @forelse ($sections as $section)
                 <article class="grid-item">
-                    <!-- Section Link
-                    <a href="{{ url('sections/' . $section->id) }}" class="aisle-link">
-                        Section ID: {{ $section->id }}<br>
-                        Kind: {{ $section->kind }}<br>
-                        SET FOR {{ $section->number_products }} Products
-                    </a>
-                    -->
-                    <!--
-                    <a href="{{ route('aisles.nestOrphaned', ['orphaned_section_id' => $section->id, 'aisle_id' => 'placeholder', 'aisle_order' => 'placeholder']) }}" class="aisle-link">
-                        Section ID: {{ $section->id }}<br>
-                        Kind: {{ $section->kind }}<br>
-                        SET FOR {{ $section->number_products }} Products
-                    </a>
-                    -->
-
+                    
                     <a href="{{ route('aisles.nestOrphaned', [
                             'orphaned_section_id' => $section->id,
                             'aisle_id' => $aisles->first()->id, // Default or selected aisle in form
@@ -74,7 +63,6 @@
                         Kind: {{ $section->kind }}<br>
                         SET FOR {{ $section->number_products }} Products
                     </a>
-
 
                     <!-- Products in the Section -->
                     <div class="products">
@@ -124,18 +112,18 @@
                             @if ($products->has($position))
                                 @php $product = $products[$position]; @endphp
                                 <!-- Assigned Product Button -->
-                                <button class="product-button assigned" data-product-id="{{ $product->id }}">
+                                <a href="" class="product-button assigned" data-product-id="{{ $product->id }}">
                                     Product ID: {{ $product->id }} orphaned<br>
                                     Product Name: {{ $product->name }}<br>
                                     Kind: {{ $product->kind }}<br>
                                     Price: ${{ number_format($product->price, 2) }}
-                                </button>
+                                </a>
                             @else
                                 <!-- Unassigned Product Button -->
-                                <button class="product-button unassigned" data-position="{{ $position }}">
+                                <a href="" class="product-button unassigned" data-position="{{ $position }}">
                                     Position: {{ $position }}<br>
                                     Unassigned
-                                </button>
+                                </a>
                             @endif
                         @endfor
                     </div>
