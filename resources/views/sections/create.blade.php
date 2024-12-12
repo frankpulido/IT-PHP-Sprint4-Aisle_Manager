@@ -13,6 +13,45 @@
     </div>
 
     <section class="grid-container">
+        <section class="grid-item">
+
+            <form action="{{ route('section.createBridge') }}" method="POST">
+                @csrf
+                
+                <!-- Aisle ID (aisle_id) from CreateSection -->
+                <input type="hidden" name="aisle_id" value="{{ $aisleId }}">
+                
+                <!-- Position (aisle_order) from createSection -->
+                <input type="hidden" name="position" value="{{ $position }}">
+                
+                <!-- Layout Selection -->
+                <label for="grid_id">Select Layout:</label>
+                <select name="grid_id" id="grid_id" required>
+                    <option value="">-- Select a Layout --</option>
+                    @foreach ($layouts as $layout)
+                        <option value="{{ $layout->id }}">
+                            Layout ID: {{ $layout->id }} ({{ $layout->number_products }} Products)
+                        </option>
+                    @endforeach
+                </select>
+
+                <!-- Kind Selection -->
+                <label for="kind">Select Kind:</label>
+                <select name="kind" id="kind" required>
+                    <option value="">-- Select a Kind --</option>
+                    @foreach ($kinds as $kind)
+                        <option value="{{ $kind }}">{{ ucfirst($kind) }}</option>
+                    @endforeach
+                </select>
+
+                <!-- Submit Button -->
+                <button type="submit" class="btn btn-primary">Create Section</button>
+            </form>
+
+        </section>
+    </section>
+
+    <section class="grid-container">
         <section class="nested-grid-2 rajdhani-light">
             @php
                 $totalLayouts = $layouts->count();

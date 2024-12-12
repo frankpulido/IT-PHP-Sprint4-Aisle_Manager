@@ -7,6 +7,7 @@
 <body>
     @include('components.header')
     <h1 class="rajdhani-light">FLOORPLAN of the grocery store</h1>
+    <h2 class="rajdhani-light">To populate an unassigned section either nest an ORPHANED SECTION or click on desired allocation and make it from scratch</h2>
 
     <!-- Swap Forms -->
     <section class="grid-container">

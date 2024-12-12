@@ -6,7 +6,6 @@
             <a href="{{ route('aisles.index') }}" class="menu-option">[ STORE FLOORPLAN ]</a>
         </nav>
         <nav class="menu">
-        <a href="{{ route('section.create') }}" class="menu-option">[ NEW SECTION ]</a>
         <a href="{{ route('sections.orphaned') }}" class="menu-option">[ ORPHANED SECTIONS ]</a>
         </nav>
         <!--

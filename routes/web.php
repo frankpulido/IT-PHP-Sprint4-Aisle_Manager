@@ -23,17 +23,21 @@ Route::get('/sections/orphaned', [AisleController::class, 'orphanedSections'])->
 
 
 
-// TERMINAR GET route for swapping Orphaned Section with any section in Aisles
-Route::get('/nest-orphaned', [AisleController::class, 'nestOrphaned'])->name('aisles.nestOrphaned');
+// GET route for swapping Orphaned Section with any section in Aisles
+Route::post('/nest-orphaned', [AisleController::class, 'nestOrphaned'])->name('aisles.nestOrphaned');
 
-// TERMINAR
+// GET TERMINAR
 Route::get('/create', [AisleController::class, 'createSection'])->name('section.create'); // Show available layouts to start creating a section
 
-// TERMINAR : updates and renders section again
+// POST Intermediate step for gathering missing data from form submission and create a section
+Route::post('/create-bridge', [AisleController::class, 'createBridge'])->name('section.createBridge');
+
+// GET TERMINAR
+Route::get('/edit', [AisleController::class, 'editSection'])->name('section.edit'); // Edit section
+
+// POST TERMINAR : updates and renders section again
 Route::post('/update', [AisleController::class, 'updateSection'])->name('section.update');
 
-// TERMINAR
-Route::get('/edit', [AisleController::class, 'editSection'])->name('section.edit'); // Edit section
 
 
 
@@ -50,22 +54,6 @@ Route::post('/swap-sections', [AisleController::class, 'swapSections'])->name('s
 // Showing jsons - decide whether to eliminate not only the route below but also SectionController (use AisleController for handling all routes) and leave ProductController for future development
 Route::get('/sections', [SectionController::class, 'all']); // All sections regadless of allocation
 
-
-
-
-
-
-// ROUTES BELOW ARE NOT IN USE
-
-Route::get('/section/create', [SectionController::class, 'create']);
-
-Route::get('/aisles/{id}/{category?}', [AisleController::class, 'map']);
-// Question mark after category declares variable as optional
-// if ($category) {return "This view will map the aisle \"{$id}\" and the products stored in the shelves \"{$category}\"...";}
-// return "This view will map the aisle \"{$id}\".";
-
-// Defines the route to fetch product details
-//Route::get('/aisles/{aisleId}/products/{productId}', [ProductController::class, 'show']);
 
 
 /*

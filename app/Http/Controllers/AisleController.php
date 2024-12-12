@@ -170,6 +170,7 @@ class AisleController extends Controller
 
     public function nestOrphaned(Request $request)
     {
+        Log::info('Request Data:', $request->all()); // debugging with logs/laravel.log
         // Validate the Form input
         $request->validate([
             'orphaned_section_id' => 'required|exists:sections,id',
@@ -220,11 +221,56 @@ class AisleController extends Controller
         // Get coordinates (query) to nest in the right place
         $aisleId = $request->query('aisle_id');
         $position = $request->query('position');
+        // Add enum kind (I should have created another Model)
+        $kinds = ['food', 'fresh food', 'personal care', 'cleaning', 'dairy', 'beer', 'water', 'beverages'];
 
-        return view('sections.create', compact('layouts', 'aisleId', 'position'));
+        return view('sections.create', compact('layouts', 'aisleId', 'position', 'kinds'));
     }
 
 
+    public function createBridge(Request $request)
+    {
+        
+        //Log::info('Request Data:', $request->all()); // debugging with logs/laravel.log
+        
+        // Validate the input
+        $request->validate([
+            'aisle_id' => 'required|exists:aisles,id',
+            'position' => 'required|integer|min:1',
+            'grid_id' => 'required|exists:grid_layouts,id',
+            'kind' => 'required|string|in:food,fresh food,personal care,cleaning,dairy,beer,water,beverages',
+        ]);
+
+        $gridLayout = GridLayout::findOrFail($request->input('grid_id'));
+        
+        // Create the section using direct assignment
+        $section = new Section();
+        $section->aisle_id = $request->aisle_id;
+        $section->aisle_order = $request->position;
+        $section->kind = $request->kind;
+        $section->number_products = $gridLayout->number_products;
+        $section->grid_id = $request->grid_id;
+        $section->save();
+
+        // THIS WAS THE ISSUE : IF USING Section::Create we have the "fillable" restrictions of the Model
+        /* Create a new Section
+        $section = Section::create([
+            'aisle_id' => $request->input('aisle_id'),
+            'aisle_order' => $request->input('position'),
+            'kind' => $request->input('kind'),
+            'number_products' => $gridLayout->number_products, // Set from the grid layout
+            //'number_products' => GridLayout::find($request->input('grid_id'))->number_products,
+            'grid_id' => $request->input('grid_id'),
+        ]);
+        */
+
+        
+        //Redirect to editSection for the newly created section
+        return redirect()->route('section.edit', ['section_id' => $section->id])
+                        ->with('success', 'Section created successfully! Now you can add products.');
+        
+    }
+        
 
     public function editSection(Request $request)
     {
@@ -245,7 +291,6 @@ class AisleController extends Controller
         // Validate the request
         $request->validate([
             'matching_products.*' => 'nullable|exists:products,id',
-            //'matching_products.*' => 'exists:products,id',
         ]);
 
         
@@ -258,13 +303,23 @@ class AisleController extends Controller
         // Update products in the section
         foreach ($request->matching_products as $section_order => $product_id) {
 
-            $section_order = (int) $section_order; // Explicitly cast to integer!!!!!!!!! (so many hours thinking this over)
+            $section_order = (int) $section_order; // Explicitly cast to integer (needed?? check)
             
             if ($product_id) {
+                $product = Product::findOrFail($product_id);
+
+                // Use explicit property assignment and save
+                $product->section_id = $section->id;
+                $product->section_order = $section_order;
+                $product->save();
+            
+                //THE CODE BELOW DOESN'T WORK IF THERE ARE FILLABLE RESTRICTIONS !!!!
+                /*
                 Product::findOrFail($product_id)->update([
                     'id' => $section->id,
                     'section_order' => $section_order,
                 ]);
+                */
             }
         }
 
@@ -273,8 +328,6 @@ class AisleController extends Controller
             ->with('success', 'Section updated successfully!');
     }
 
-
-    
 
     /* Ver minuto 06:00 Episodio Lista Coders Free "09 - Eloquent - Curso Laravel 11 desde cero"
     $aisle = new Aisle();

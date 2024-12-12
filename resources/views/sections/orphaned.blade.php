@@ -22,7 +22,7 @@
 
             <!-- Dropdown for selecting aisle -->
             <label for="aisle_id">Select Aisle:</label>
-            <select id="aisle_id" required>
+            <select name="aisle_id" id="aisle_id" required>
                 @foreach ($aisles as $aisle)
                     <option value="{{ $aisle->id }}">
                         Aisle {{ $aisle->id }}: {{ $aisle->name }}
@@ -40,10 +40,22 @@
                 @endforeach
             </select>
 
-            <!-- Hidden Input for Section ID -->
-            <input type="hidden" name="orphaned_section_id" id="orphaned_section_id" value="">
 
-        <!-- Swap Form ENDS -->
+            <!-- Dropdown for selecting an orphaned section -->
+            <label for="orphaned_section_id">Select Orphaned Section:</label>
+            <select name="orphaned_section_id" id="orphaned_section_id" required>
+                @foreach ($sections as $section)
+                    <option value="{{ $section->id }}">
+                        Section {{ $section->id }} (Kind: {{ $section->kind }}, Products: {{ $section->number_products }})
+                    </option>
+                @endforeach
+            </select>
+
+
+            <!-- Submit Button -->
+            <button type="submit" class="btn btn-primary">Nest Section</button>
+
+        </form><!-- Swap Form ENDS -->
 
         </section>
     </section>
@@ -54,11 +66,7 @@
             @forelse ($sections as $section)
                 <article class="grid-item">
                     
-                    <a href="{{ route('aisles.nestOrphaned', [
-                            'orphaned_section_id' => $section->id,
-                            'aisle_id' => $aisles->first()->id, // Default or selected aisle in form
-                            'aisle_order' => 1 // Default or selected position in form
-                        ]) }}" class="aisle-link">
+                    <a href="" class="aisle-link">
                         Section ID: {{ $section->id }}<br>
                         Kind: {{ $section->kind }}<br>
                         SET FOR {{ $section->number_products }} Products
