@@ -8,7 +8,7 @@
     @include('components.header')
 
     <div>
-        <h1 class="rajdhani-light">Orphaned Sections -> Click on column column "head" to edit and nest in Aisle.</h1>
+        <h1 class="rajdhani-light">Orphaned Sections -> Select Aisle/Position and Click on Section's column "head" to edit and nest in Aisle.</h1>
         <p class="rajdhani-light">ORPHANED SECTIONS below are are not yet assigned to any aisle.</p>
     </div>
 

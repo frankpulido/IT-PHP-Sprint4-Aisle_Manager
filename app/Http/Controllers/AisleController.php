@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\Aisle;
 use App\Models\GridLayout;
 use App\Models\Section;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AisleController extends Controller
@@ -196,6 +197,7 @@ class AisleController extends Controller
     }
 
 
+
     public function createSection(Request $request)
     {
         // Retrieve layouts
@@ -205,13 +207,45 @@ class AisleController extends Controller
         $aisleId = $request->query('aisle_id');
         $position = $request->query('position');
 
-        return view('aisles.create', compact('layouts', 'aisleId', 'position'));
+        return view('sections.create', compact('layouts', 'aisleId', 'position'));
     }
 
-    public function editSection()
+
+
+    public function editSection(Request $request)
     {
-
+        $section = Section::with(['products', 'gridLayout'])->findOrFail($request->section_id);
+        $matchingProducts = Product::where('kind', $section->kind)->get();
+        // Receives the section data and forwards it to the edit view
+        return view('sections.edit', compact('section', 'matchingProducts'));
     }
+
+
+
+    public function updateSection(Request $request)
+{
+    $section = Section::findOrFail($request->section_id);
+
+    // Validate the request
+    $request->validate([
+        'matching_products.*' => 'nullable|exists:products,id',
+    ]);
+
+    // Update products in the section
+    foreach ($request->matching_products as $section_order => $product_id) {
+        if ($product_id) {
+            $product = Product::findOrFail($product_id);
+            $product->update([
+                'section_id' => $section->id,
+                'section_order' => $section_order,
+            ]);
+        }
+    }
+
+    // Redirect back to the section view
+    return redirect()->route('section.show', ['section_id' => $section->id])
+        ->with('success', 'Section updated successfully!');
+}
 
 
 

@@ -29,8 +29,8 @@ Route::get('/nest-orphaned', [AisleController::class, 'nestOrphaned'])->name('ai
 // TERMINAR
 Route::get('/create', [AisleController::class, 'createSection'])->name('section.create'); // Show available layouts to start creating a section
 
-// TERMINAR
-
+// TERMINAR : updates and renders section again
+Route::post('/update', [AisleController::class, 'updateSection'])->name('section.update');
 
 // TERMINAR
 Route::get('/edit', [AisleController::class, 'editSection'])->name('section.edit'); // Edit section

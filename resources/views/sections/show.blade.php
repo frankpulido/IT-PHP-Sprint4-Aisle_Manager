@@ -12,7 +12,12 @@
         <section class="nested-grid-3">
 
             <article class="grid-item">
-                <h2 class="rajdhani-light">SECTION {{ $section->id }} | Aisle {{ $section->aisle_id }} - Position {{ $section->aisle_order }}</h2>
+                <h2 class="rajdhani-light">SECTION {{ $section->id }} | Aisle {{ $section->aisle_id }} - Position {{ $section->aisle_order }}<br>Kind : {{ $section->kind }}</h2>
+                <a href="{{ route('section.edit', ['section_id' => $section->id]) }}" class="aisle-link">
+                    EDIT SECTION
+                </a>
+                <h3 class="rajdhani-light">LOCATION Aisle/Position is changed swapping in the FLOORPLAN or swapping with ORPHANED.</h3>
+
                 <!-- Grid Layout Rendering -->
                 <div class="products">
                     @php
@@ -28,13 +33,9 @@
                                     <div class="grid-item nth-child-{{ $k }}">
                                         @if ($products->has($k))
                                             @php $product = $products[$k]; @endphp
-                                            <h4 class="rajdhani-light">ID: {{ $product->id }}</h4>
-                                            <h4 class="rajdhani-light">NAME: {{ $product->name }}</h4>
-                                            <h4 class="rajdhani-light">KIND: {{ $product->kind }}</h4>
-                                            <h4 class="rajdhani-light">PRICE: ${{ number_format($product->price, 2) }}</h4>
-                                            <h4 class="rajdhani-light">12M REVENUES: ${{ $product->revenues_year }}</h4>
-                                            <h4 class="rajdhani-light">12M TURNOVER: {{ $product->turnover_year }}</h4>
-                                            <h4 class="rajdhani-light">12M STOCKOUTS: {{ $product->stockouts_year }}</h4>
+                                            <h3 class="rajdhani-light">ID: {{ $product->id }}</h3>
+                                            <h3 class="rajdhani-light">NAME: {{ $product->name }}</h3>
+                                            <h4 class="rajdhani-light">[ Alerts publisher-listener could be here ] <br> use conditional formatting</h4>
                                         @endif
                                     </div>
                                 @endfor
@@ -56,15 +57,7 @@
                     @for ($j = 1; $j <= $totalProducts; $j++)
                         @if ($products->has($j))
                             @php $product = $products[$j]; @endphp
-                            <button class="product-button assigned"
-                                data-product-id="{{ $product->id }}"
-                                data-product-name="{{ $product->name }}" 
-                                data-product-kind="{{ $product->kind }}" 
-                                data-product-price="{{ $product->price }}"
-                                data-product-revenues_year="{{ $product->revenues_year }}" 
-                                data-product-turnover_year="{{ $product->turnover_year }}" 
-                                data-product-stockouts_year="{{ $product->stockouts_year }}"
-                            >
+                            <button class="product-button assigned">
                                 Product ID: {{ $product->id }}<br>
                                 Product Name: {{ $product->name }}<br>
                                 Kind: {{ $product->kind }}<br>
@@ -84,7 +77,12 @@
             </article>
 
             <article class="grid-item">
-                <h2>KPIs | The info should be sent through the API.</h2>
+                <h2>KPIs | The info should be received through the API. <br> CLICK ON buttons on left</h2>
+                <p>SALES FORECAST : Seasonality factor & Supplier's push/pull actions</p>
+                <p>CURRENT STOCK : Backstore and central Warehouse</p>
+                <p>DELIVERY TIME : Dynamic delivery time calculation</p>
+                <p>ORDER POINT : Minimum stock that triggers purchase order</p>
+                <p>ORDER QTY : Adjusted by Dynamic delivery time calculation</p>
             </article>
 
         </section>
