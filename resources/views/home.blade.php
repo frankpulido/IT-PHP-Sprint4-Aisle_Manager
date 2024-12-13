@@ -59,16 +59,18 @@
                 <b>SECTION VIEW (/sections/show.blade.php) :</b><br><br>
                 It has 3 containers on a row. On the left a link to <br>Section Edit<br> and the layout showing how the products are displayed within.In the middle the list of products kith their KPI's. On the right a spaced to be used for displaying <br>Product KPI's INFO<br> when clicking on a Product. (future development) <br>
                 </h3>
-                <h2>ORPHANED SECTIONS (/sections/orphaned.blade.php)</h2><br>
+                <h2>ORPHANED SECTIONS (/sections/orphaned.blade.php)</h2>
                 <h3 class="rajdhani-light">
                 I consider this is an important tool for the App. It allows the user to explore product allocation possiblities and create sections NOT nested in the Aisles playing with different product layouts... When the user decides for a change the "orphaned" Section is swapped with the existing Section which becomes the "orphaned".
                 <br>
                 </h3>
-                <h2>FUTURE DEVELOPMENT</h2><br>
+                <h2>FUTURE DEVELOPMENT</h2>
                 <h3 class="rajdhani-light">
-                SECTION GRIDLAYOUT BUILDER : Product allocation within the Section.<br>
+                SECTION GRIDLAYOUT BUILDER : Product allocation layouts for Section.<br>
                 KPIs PANEL IN SECTION VIEW : Fed from API<br>
-                INBOUND LOGISTICS MANAGER (AN APP LINKED TO THIS ONE) : Order Point / Order Quantity -> Based on Delivery Time of Suppliers, Seasonality and Supplier's forecasting (PULL promotions).
+                PANORAMAS : UPLOADING 360 PHOTOS - VIRTUAL TOUR<br>
+                INBOUND LOGISTICS MANAGER (AN APP LINKED TO THIS ONE) : Order Point / Order Quantity -> Based on Delivery Time of Suppliers, Seasonality and Supplier's forecasting (PULL promotions).<br>
+                <a href="../../public/images/ERD_Stock_API.png" class="rajdhani-light" target="_blank">CLICK TO OPEN SCHEMA</a><br>
                 </h3>
             </article>
 
