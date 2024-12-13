@@ -13,6 +13,11 @@ return new class extends Migration
     {
         Schema::create('panoramas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('section_id')
+                ->unique()
+                ->constrained('sections') // References 'id' column in `aisles` table
+                ->onUpdate('cascade')    // Updates if referenced ID changes
+                ->onDelete('restrict');   // Prevent deletion of panoramas with related sections
             $table->string('panotourvirtual');
             $table->timestamps();
         });

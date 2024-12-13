@@ -40,8 +40,36 @@
             </article>
 
             <article class="grid-item">
-                <h3>ENTITY RELATIONSHIP DIAGRAM | The shadowed area indicates the scope of this first stage of the Project.</h3>
+                <h2>ENTITY RELATIONSHIP DIAGRAM | The shadowed area indicates the scope of this first stage of the Project.</h2>
                 <img src="{{asset('images/edr.png')}}" alt="EDR Aisle Manager">
+                <br>
+                <h2>NAVIGATION</h2>
+                <h3 class="rajdhani-light">
+                <b>FLOORPLAN (/aisles/index.blade.php) :</b><br><br>
+                The best point of start. Represents the layout of the store. The floorplan is unlikely to chang along time and it's built using Aisle Model : an empty scheleton that nests Sections. Each Aisle is displayed in a column with its nested sections below... <br>
+                Hover the mouse over an Aisle and its annual revenue is shown (Sections total). Hover it over a Section and its individual annual revenue will be shown. <br>
+                Clicking on an Aisle : Opens <b>Aisle View</b> similar view with columns representing each Section and the products displayed in them.<br>
+                Clicking on a nested Section : Opens the <b>Section View</b>. Displays Section Layout. Links to <b>Section Edit View</b>.<br>
+                Clicking on an available space for a Section : Opens a <b>Create View</b> that leads you to the process of Section Create for that specific position within thas specific Aisle.<br><br>
+                <b>AISLE VIEW (/aisles/show.blade.php) :</b><br><br>
+                Maps Aisle's collection of nested Sections the same way the FLOORPLAN maps the Aisles. In this view the Sections are column heads with a grid representation of how products are displayed inside it. Below, the list of products pertaining to the section.<br>
+                Hover on the Section and get the total annual revenue again (as in the FloorPlan view).<br>
+                Click on a product an get relevant product info.<br>
+                Click on the Section Column head and go to the <b>Section View</b>.<br><br>
+                <b>SECTION VIEW (/sections/show.blade.php) :</b><br><br>
+                It has 3 containers on a row. On the left a link to <br>Section Edit<br> and the layout showing how the products are displayed within.In the middle the list of products kith their KPI's. On the right a spaced to be used for displaying <br>Product KPI's INFO<br> when clicking on a Product. (future development) <br>
+                </h3>
+                <h2>ORPHANED SECTIONS (/sections/orphaned.blade.php)</h2><br>
+                <h3 class="rajdhani-light">
+                I consider this is an important tool for the App. It allows the user to explore product allocation possiblities and create sections NOT nested in the Aisles playing with different product layouts... When the user decides for a change the "orphaned" Section is swapped with the existing Section which becomes the "orphaned".
+                <br>
+                </h3>
+                <h2>FUTURE DEVELOPMENT</h2><br>
+                <h3 class="rajdhani-light">
+                SECTION GRIDLAYOUT BUILDER : Product allocation within the Section.<br>
+                KPIs PANEL IN SECTION VIEW : Fed from API<br>
+                INBOUND LOGISTICS MANAGER (AN APP LINKED TO THIS ONE) : Order Point / Order Quantity -> Based on Delivery Time of Suppliers, Seasonality and Supplier's forecasting (PULL promotions).
+                </h3>
             </article>
 
         </section>

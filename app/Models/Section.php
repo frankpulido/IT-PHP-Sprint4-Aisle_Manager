@@ -36,4 +36,9 @@ class Section extends Model
         return $this->belongsTo(GridLayout::class, 'grid_id');
     }
 
+    public function panorama()
+    {
+        return $this->hasOne(Panorama::class, 'related_section_id', 'id');
+    }
+
 }

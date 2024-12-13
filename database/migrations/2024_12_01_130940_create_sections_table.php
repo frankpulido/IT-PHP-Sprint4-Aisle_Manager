@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('sections', function (Blueprint $table) {
-            $table->id(); //$table->string('name');
+            $table->id();
             $table->foreignId('aisle_id')
                 ->nullable() // Allow sections to exist without being assigned to an aisle initially
                 ->constrained('aisles') // References 'id' column in `aisles` table
