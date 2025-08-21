@@ -66,6 +66,8 @@
                 </h3>
                 <h2>FUTURE DEVELOPMENT</h2>
                 <h3 class="rajdhani-light">
+                ORPHANED DUPLICATION : New functionality to duplicate an orphan and make a variant
+                TABLE ORDER_ITEMS : 
                 SECTION GRIDLAYOUT BUILDER : Product allocation layouts for Section.<br>
                 KPIs PANEL IN SECTION VIEW : Fed from API<br>
                 PANORAMAS : UPLOADING 360 PHOTOS - VIRTUAL TOUR<br>
