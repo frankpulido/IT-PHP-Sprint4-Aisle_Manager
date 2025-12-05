@@ -2,10 +2,10 @@
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "RAILPACK",
-    "buildCommand": "COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader && npm cache clean --force && npm ci && npm run build"
+    "buildCommand": "COMPOSER_ALLOW_SUPERUSER=1 composer install --no-dev --optimize-autoloader && rm -rf node_modules/.cache && npm ci && npm run build"
   },
   "deploy": {
-    "startCommand": "php artisan migrate:fresh --seed --force && echo 'Starting Laravel...' && php artisan serve --host=0.0.0.0 --port=$PORT",
+    "startCommand": "php artisan migrate:fresh --seed --force && php artisan serve --host=0.0.0.0 --port=$PORT",
     "cronSchedule": "0 0 * * *"
   }
 }
