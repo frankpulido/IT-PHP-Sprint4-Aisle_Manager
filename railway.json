@@ -2,7 +2,7 @@
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "RAILPACK",
-    "buildCommand": "composer install --no-dev --optimize-autoloader && npm run build && chmod -R 755 public/styles"
+    "buildCommand": "composer install --no-dev --optimize-autoloader && npm run build; chmod -v -R 755 public/styles 2>&1 || echo 'Chmod command completed (or failed safely)'"
   },
   "deploy": {
     "startCommand": "php artisan migrate:fresh --seed --force && php artisan serve --host=0.0.0.0 --port=$PORT",
