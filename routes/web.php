@@ -8,6 +8,35 @@ use App\Http\Controllers\ProductController;
 use App\Models\Aisle;
 use App\Models\Section;
 use App\Models\Product;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Schema;
+
+// Add to routes/web.php
+Route::get('/db-check', function() {
+    try {
+        DB::connection()->getPdo();
+        
+        // Check if sessions table exists
+        $sessionsExists = Schema::hasTable('sessions');
+        $usersCount = DB::table('users')->count();
+        
+        return response()->json([
+            'database_connected' => true,
+            'sessions_table_exists' => $sessionsExists,
+            'users_count' => $usersCount,
+            'env_db_host' => env('DB_HOST'),
+            'env_db_database' => env('DB_DATABASE'),
+            'app_env' => env('APP_ENV'),
+        ]);
+    } catch (\Exception $e) {
+        return response()->json([
+            'database_connected' => false,
+            'error' => $e->getMessage(),
+            'env_db_host' => env('DB_HOST'),
+            'env_db_database' => env('DB_DATABASE'),
+        ]);
+    }
+});
 
 Route::get('/', HomeController::class)->name('home');
 // ONLY BECAUSE HOMECONTROLLER HAS A SINGLE METHOD : I changes method index() to method __invoke() in app/Http/Controllers
