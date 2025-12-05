@@ -12,30 +12,41 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 // Add to routes/web.php
-Route::get('/db-check', function() {
-    try {
-        DB::connection()->getPdo();
-        
-        // Check if sessions table exists
-        $sessionsExists = Schema::hasTable('sessions');
-        $usersCount = DB::table('users')->count();
-        
-        return response()->json([
-            'database_connected' => true,
-            'sessions_table_exists' => $sessionsExists,
-            'users_count' => $usersCount,
-            'env_db_host' => env('DB_HOST'),
-            'env_db_database' => env('DB_DATABASE'),
-            'app_env' => env('APP_ENV'),
-        ]);
-    } catch (\Exception $e) {
-        return response()->json([
-            'database_connected' => false,
-            'error' => $e->getMessage(),
-            'env_db_host' => env('DB_HOST'),
-            'env_db_database' => env('DB_DATABASE'),
-        ]);
-    }
+Route::get('/db-check-detailed', function() {
+    $connection = DB::connection();
+    $pdo = $connection->getPdo();
+    
+    // Get ACTIVE connection details
+    $host = $connection->getConfig('host');
+    $database = $connection->getConfig('database');
+    $username = $connection->getConfig('username');
+    
+    // Check what database we're actually connected to
+    $currentDatabase = $connection->select('SELECT DATABASE() as db')[0]->db;
+    
+    // List ALL tables in the current database
+    $tables = $connection->select('SHOW TABLES');
+    
+    // Check if using SQLite
+    $driver = $connection->getDriverName();
+    $sqlitePath = config('database.connections.sqlite.database');
+    
+    return response()->json([
+        'driver' => $driver,
+        'active_host' => $host,
+        'active_database' => $database,
+        'current_database' => $currentDatabase,
+        'username' => $username,
+        'tables_count' => count($tables),
+        'tables_list' => array_map(function($table) {
+            return array_values((array)$table)[0];
+        }, $tables),
+        'is_sqlite' => $driver === 'sqlite',
+        'sqlite_path' => $sqlitePath ?? 'N/A',
+        'env_db_host' => env('DB_HOST'),
+        'env_db_database' => env('DB_DATABASE'),
+        'app_env' => env('APP_ENV'),
+    ]);
 });
 
 Route::get('/', HomeController::class)->name('home');
