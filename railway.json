@@ -2,10 +2,10 @@
   "$schema": "https://railway.com/railway.schema.json",
   "build": {
     "builder": "RAILPACK",
-    "buildCommand": "composer install --no-dev --optimize-autoloader"
+    "buildCommand": "composer install --no-dev --optimize-autoloader && npm ci && npm run build"
   },
   "deploy": {
-    "startCommand": "bash -c 'echo \"$(date) - Starting deploy...\" && until php artisan migrate:status >/dev/null 2>&1; do echo \"$(date) - Waiting for DB...\"; sleep 2; done && php artisan migrate:fresh --seed --force && echo \"$(date) - Migration and seeding done\" && php artisan serve --host=0.0.0.0 --port=$PORT'",
+    "startCommand": "php artisan migrate:fresh --seed --force && echo 'Starting Laravel server...' && php artisan serve --host=0.0.0.0 --port=$PORT",
     "cronSchedule": "0 0 * * *"
   }
 }
