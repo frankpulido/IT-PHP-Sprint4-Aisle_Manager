@@ -5,7 +5,7 @@
     "buildCommand": "composer install --no-dev --optimize-autoloader"
   },
   "deploy": {
-    "startCommand": "php artisan migrate:fresh --seed --force && php artisan serve --host=0.0.0.0 --port=$PORT",
+    "startCommand": "bash -c 'echo \"$(date) - Starting deploy...\" && until php artisan migrate:status >/dev/null 2>&1; do echo \"$(date) - Waiting for DB...\"; sleep 2; done && php artisan migrate:fresh --seed --force && echo \"$(date) - Migration and seeding done\" && php artisan serve --host=0.0.0.0 --port=$PORT'",
     "cronSchedule": "0 0 * * *"
   }
 }
