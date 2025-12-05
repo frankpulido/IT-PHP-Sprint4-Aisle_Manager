@@ -11,6 +11,51 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
+// Debugging railway database connection issues
+Route::get('/database-debug', function() {
+    $connection = DB::connection();
+    $config = $connection->getConfig();
+    
+    // Get ALL tables with row counts
+    $tables = $connection->select('SHOW TABLES');
+    
+    $tableDetails = [];
+    $totalRows = 0;
+    
+    foreach ($tables as $tableObj) {
+        $tableName = array_values((array)$tableObj)[0];
+        $rowCount = $connection->table($tableName)->count();
+        $tableDetails[] = [
+            'name' => $tableName,
+            'row_count' => $rowCount
+        ];
+        $totalRows += $rowCount;
+    }
+    
+    // Get migration status
+    $migrations = $connection->table('migrations')->get();
+    
+    return response()->json([
+        'connection_info' => [
+            'host' => $config['host'],
+            'database' => $config['database'],
+            'driver' => $config['driver'],
+            'username' => $config['username'],
+        ],
+        'tables_found' => count($tables),
+        'table_list' => $tableDetails,
+        'total_rows_across_all_tables' => $totalRows,
+        'migrations_applied' => $migrations->count(),
+        'migrations_list' => $migrations->pluck('migration'),
+        'app_environment' => app()->environment(),
+        'env_variables_check' => [
+            'DB_CONNECTION' => env('DB_CONNECTION'),
+            'DB_DATABASE' => env('DB_DATABASE'),
+            'APP_ENV' => env('APP_ENV'),
+        ]
+    ]);
+});
+
 // Add to routes/web.php
 Route::get('/db-check-detailed', function() {
     $connection = DB::connection();
