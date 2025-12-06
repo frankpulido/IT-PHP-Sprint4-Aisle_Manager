@@ -11,6 +11,19 @@ use App\Models\Product;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
+
+// Debugging asset loading issues
+Route::get('/debug-assets', function() {
+    return response()->json([
+        'styles.css_url' => asset('styles/styles.css'),
+        'styles.css_path' => public_path('styles/styles.css'),
+        'styles.css_exists' => file_exists(public_path('styles/styles.css')),
+        'section-layouts.css_exists' => file_exists(public_path('styles/section-layouts.css')),
+        'app_url' => config('app.url'),
+        'current_url' => url()->current()
+    ]);
+});
+
 // Debugging railway database connection issues
 Route::get('/database-debug', function() {
     $connection = DB::connection();
