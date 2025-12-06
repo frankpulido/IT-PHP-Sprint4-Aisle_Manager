@@ -12,6 +12,25 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 
+// Debugging static file serving issues
+Route::get('/test-static-serving', function() {
+    // Try to access the CSS file directly via PHP's file functions
+    $cssPath = public_path('styles/styles.css');
+    
+    // Method 1: Direct file serve
+    if (file_exists($cssPath)) {
+        return response()->file($cssPath, ['Content-Type' => 'text/css']);
+    }
+    
+    return response()->json([
+        'error' => 'File not found',
+        'path' => $cssPath,
+        'public_dir_exists' => is_dir(public_path()),
+        'styles_dir_exists' => is_dir(public_path('styles')),
+        'request_path' => request()->path(),
+    ]);
+});
+
 // Debugging asset loading issues
 Route::get('/debug-assets', function() {
     return response()->json([
