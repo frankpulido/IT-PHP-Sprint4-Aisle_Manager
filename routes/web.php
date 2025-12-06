@@ -183,7 +183,6 @@ Route::get('/sections', [SectionController::class, 'all']); // All sections rega
 
 // Solution : Laravel's Built-in Static Serving. Serve static assets directly (Ralway deployment)
 // Must be after debugging routes to avoid interference
-/*
 Route::get('/styles/{file}', function ($file) {
     $path = public_path('styles/' . $file);
     
@@ -209,7 +208,6 @@ Route::get('/styles/{file}', function ($file) {
     
     return response()->file($path, ['Content-Type' => $mime]);
 });
-*/
 
 /*
 GET
