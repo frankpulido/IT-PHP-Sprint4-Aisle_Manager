@@ -5,6 +5,6 @@
     "buildCommand": "composer install --no-dev --optimize-autoloader && npm run build"
   },
   "deploy": {
-    "startCommand": "php artisan migrate:fresh --seed --force && php -S 0.0.0.0:$PORT -t public public/index.php"
+    "startCommand": "php artisan migrate:fresh --seed --force && php -S 0.0.0.0:$PORT"
   }
 }

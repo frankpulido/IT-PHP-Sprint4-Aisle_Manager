@@ -12,7 +12,29 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 
-// Debugging static file serving issues
+
+// Solution : Laravel's Built-in Static Serving. Serve static assets directly (Ralway deployment)
+Route::get('/styles/{file}', function ($file) {
+    $path = public_path("styles/{$file}");
+    
+    if (!file_exists($path)) {
+        abort(404);
+    }
+    
+    $mime = match(pathinfo($path, PATHINFO_EXTENSION)) {
+        'css' => 'text/css',
+        'js' => 'application/javascript',
+        'png' => 'image/png',
+        'jpg', 'jpeg' => 'image/jpeg',
+        'gif' => 'image/gif',
+        'svg' => 'image/svg+xml',
+        default => 'text/plain',
+    };
+    
+    return response()->file($path, ['Content-Type' => $mime]);
+})->where('file', '.*');
+
+// Debugging static file serving issues (Ralway deployment)
 Route::get('/test-static-serving', function() {
     // Try to access the CSS file directly via PHP's file functions
     $cssPath = public_path('styles/styles.css');
@@ -31,7 +53,7 @@ Route::get('/test-static-serving', function() {
     ]);
 });
 
-// Debugging asset loading issues
+// Debugging asset loading issues (Ralway deployment)
 Route::get('/debug-assets', function() {
     return response()->json([
         'styles.css_url' => asset('styles/styles.css'),
@@ -43,7 +65,7 @@ Route::get('/debug-assets', function() {
     ]);
 });
 
-// Debugging railway database connection issues
+// Debugging railway database connection issues (Ralway deployment)
 Route::get('/database-debug', function() {
     $connection = DB::connection();
     $config = $connection->getConfig();
@@ -88,7 +110,7 @@ Route::get('/database-debug', function() {
     ]);
 });
 
-// Add to routes/web.php
+// Debugging : Detailed database connection and structure check (Ralway deployment)
 Route::get('/db-check-detailed', function() {
     $connection = DB::connection();
     $pdo = $connection->getPdo();
@@ -125,6 +147,7 @@ Route::get('/db-check-detailed', function() {
         'app_env' => env('APP_ENV'),
     ]);
 });
+
 
 Route::get('/', HomeController::class)->name('home');
 // ONLY BECAUSE HOMECONTROLLER HAS A SINGLE METHOD : I changes method index() to method __invoke() in app/Http/Controllers
