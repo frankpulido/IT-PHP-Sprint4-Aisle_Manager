@@ -17,25 +17,30 @@ use Illuminate\Support\Facades\Schema;
 Route::get('/styles/{file}', function ($file) {
     $path = public_path("styles/{$file}");
     
-    if (!file_exists($path)) {
+    // Only allow specific file extensions
+    $allowedExtensions = ['css', 'js', 'png', 'jpg', 'jpeg', 'gif', 'svg', 'ico'];
+    $extension = pathinfo($file, PATHINFO_EXTENSION);
+    
+    if (!in_array($extension, $allowedExtensions) || !file_exists($path)) {
         abort(404);
     }
     
-    $mime = match(pathinfo($path, PATHINFO_EXTENSION)) {
+    $mime = match($extension) {
         'css' => 'text/css',
         'js' => 'application/javascript',
         'png' => 'image/png',
         'jpg', 'jpeg' => 'image/jpeg',
         'gif' => 'image/gif',
         'svg' => 'image/svg+xml',
+        'ico' => 'image/x-icon',
         default => 'text/plain',
     };
     
     return response()->file($path, ['Content-Type' => $mime]);
-})->where('file', '.*');
+})->where('file', '[A-Za-z0-9_\-\s]+\.(css|js|png|jpg|jpeg|gif|svg|ico)$');
+
 
 // Debugging static file serving issues (Ralway deployment)
-/*
 Route::get('/test-static-serving', function() {
     // Try to access the CSS file directly via PHP's file functions
     $cssPath = public_path('styles/styles.css');
@@ -149,7 +154,8 @@ Route::get('/db-check-detailed', function() {
         'app_env' => env('APP_ENV'),
     ]);
 });
-*/
+
+
 
 Route::get('/', HomeController::class)->name('home');
 // ONLY BECAUSE HOMECONTROLLER HAS A SINGLE METHOD : I changes method index() to method __invoke() in app/Http/Controllers
