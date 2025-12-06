@@ -35,6 +35,7 @@ Route::get('/styles/{file}', function ($file) {
 })->where('file', '.*');
 
 // Debugging static file serving issues (Ralway deployment)
+/*
 Route::get('/test-static-serving', function() {
     // Try to access the CSS file directly via PHP's file functions
     $cssPath = public_path('styles/styles.css');
@@ -52,6 +53,7 @@ Route::get('/test-static-serving', function() {
         'request_path' => request()->path(),
     ]);
 });
+
 
 // Debugging asset loading issues (Ralway deployment)
 Route::get('/debug-assets', function() {
@@ -147,7 +149,7 @@ Route::get('/db-check-detailed', function() {
         'app_env' => env('APP_ENV'),
     ]);
 });
-
+*/
 
 Route::get('/', HomeController::class)->name('home');
 // ONLY BECAUSE HOMECONTROLLER HAS A SINGLE METHOD : I changes method index() to method __invoke() in app/Http/Controllers
