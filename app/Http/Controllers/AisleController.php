@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 use App\Models\Aisle;
@@ -7,7 +8,6 @@ use App\Models\Section;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-
 
 class AisleController extends Controller
 {
@@ -212,7 +212,6 @@ class AisleController extends Controller
     }
     
 
-
     public function createSection(Request $request)
     {
         // Retrieve layouts
@@ -229,10 +228,7 @@ class AisleController extends Controller
 
 
     public function createBridge(Request $request)
-    {
-        
-        //Log::info('Request Data:', $request->all()); // debugging with logs/laravel.log
-        
+    {        
         // Validate the input
         $request->validate([
             'aisle_id' => 'required|exists:aisles,id',
@@ -251,19 +247,6 @@ class AisleController extends Controller
         $section->number_products = $gridLayout->number_products;
         $section->grid_id = $request->grid_id;
         $section->save();
-
-        // THIS WAS THE ISSUE : IF USING Section::Create we have the "fillable" restrictions of the Model
-        /* Create a new Section
-        $section = Section::create([
-            'aisle_id' => $request->input('aisle_id'),
-            'aisle_order' => $request->input('position'),
-            'kind' => $request->input('kind'),
-            'number_products' => $gridLayout->number_products, // Set from the grid layout
-            //'number_products' => GridLayout::find($request->input('grid_id'))->number_products,
-            'grid_id' => $request->input('grid_id'),
-        ]);
-        */
-
         
         //Redirect to editSection for the newly created section
         return redirect()->route('section.edit', ['section_id' => $section->id])
@@ -281,13 +264,10 @@ class AisleController extends Controller
     }
 
 
-
     public function updateSection(Request $request)
     {
         
         $section = Section::findOrFail($request->section_id);
-        //Log::info('Request Data:', $request->all()); // debugging with logs/laravel.log
-
         // Validate the request
         $request->validate([
             'matching_products.*' => 'nullable|exists:products,id',
@@ -311,15 +291,7 @@ class AisleController extends Controller
                 // Use explicit property assignment and save
                 $product->section_id = $section->id;
                 $product->section_order = $section_order;
-                $product->save();
-            
-                //THE CODE BELOW DOESN'T WORK IF THERE ARE FILLABLE RESTRICTIONS !!!!
-                /*
-                Product::findOrFail($product_id)->update([
-                    'id' => $section->id,
-                    'section_order' => $section_order,
-                ]);
-                */
+                $product->save();            
             }
         }
 

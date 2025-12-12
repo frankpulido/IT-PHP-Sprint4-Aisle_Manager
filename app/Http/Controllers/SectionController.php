@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 use App\Models\Section;
@@ -6,9 +7,6 @@ use Illuminate\Http\Request;
 
 class SectionController extends Controller
 {
-    //return view('sections.section{id}'); // sections es la subcarpeta creada en views y section{id} debe ser el nombre del documento; por ejemplo, section01.blade.php... Se supone que el id debe ser una variable que pase al hacer click sobre section del aisle
-
-
     public function create() {
         //
     }
@@ -64,3 +62,4 @@ class SectionController extends Controller
         return $layout;
     }
 }
+?>

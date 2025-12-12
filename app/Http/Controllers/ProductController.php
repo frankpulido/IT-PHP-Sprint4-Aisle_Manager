@@ -1,4 +1,5 @@
 <?php
+declare(strict_types=1);
 
 namespace App\Http\Controllers;
 use App\Models\Product;
@@ -22,3 +23,4 @@ class ProductController extends Controller
         return response()->json(['error' => 'Product not found'], 404);
     }
 }
+?>
